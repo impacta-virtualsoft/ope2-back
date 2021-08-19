@@ -21,7 +21,7 @@ Start Docker Aplication
 ~~~~~~~~~~~~~~~~~~~~
     $ docker-compose -f local.yml up
 
-    P.S.: Whenever the application starts all pending migrations will run automatically.
+* Whenever the application starts all pending migrations will run automatically.
 
 building a aplicação
 ~~~~~~~~~~~~~~~~~~~~
