@@ -73,7 +73,7 @@ Remove all images:
 
 
 Git Workflow
-~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^
 
 Whenever starting a feature the developer needs to start a new branch.
 
