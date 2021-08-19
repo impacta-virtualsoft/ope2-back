@@ -1,6 +1,4 @@
-leitor
-====================
-OPE2 - BACKEND
+ope2-back
 ====================
 
 Install Docker in your Machine
