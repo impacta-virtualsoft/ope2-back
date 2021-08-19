@@ -9,7 +9,7 @@ class SalesOrder(ModelBase):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     comments = models.CharField(verbose_name="Observações", max_length=200, blank=True)
-    type = models.IntegerField(choices=TYPE_ORDER, default=0, verbose_name='Tipo')
+    type = models.IntegerField(choices=TYPE_ORDER, default=0, verbose_name='Tipo de Pedido')
 
     class Meta:
         verbose_name_plural = "Pedidos de Venda"
