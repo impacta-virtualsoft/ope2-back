@@ -26,11 +26,27 @@ Populate Fixtures
 ~~~~~~~~~~~~~~~~~~~~
     $ docker-compose -f local.yml run --rm django python manage.py populate_db
 
-* Populate Fixtures to insertion of entriens in the database.
+* Populate Fixtures to insertion of entries in the database.
 
 Stop Docker Aplication
 ~~~~~~~~~~~~~~~~~~~~
     $ docker-compose -f local.yml down
+
+Reset Database(Postgres)
+^^^^^^^^^^^^^^^^^^^^^
+1 - Stop Application
+~~~~~~~~~~~~~~~~~~~~
+    $ docker-compose -f local.yml down
+2 - Remove Postgres Container
+~~~~~~~~~~~~~~~~~~~~
+    $ docker rm backend_postgres
+3 - Remove Backups Volume Postgres
+~~~~~~~~~~~~~~~~~~~~
+    $ docker volume rm ope2-back_local_postgres_data_backups
+4 - Remove Data Volume Postgres
+~~~~~~~~~~~~~~~~~~~~
+    $ docker volume rm ope2-back_local_postgres_data
+
 
 Docker Useful Commands
 ^^^^^^^^^^^^^^^^^^^^^
