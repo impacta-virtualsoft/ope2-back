@@ -60,16 +60,19 @@ Usuario: admin
 Senha: admin@admin
 
 If you want to create a super user run:
+
     $ docker-compose -f local.yml run --rm django python manage.py createsuperuser
 
 Create New Migrations
 ~~~~~~~~~~~~~~~~~~~~
 You nedd to stop the application.
+
     $ docker-compose -f local.yml run --rm django python manage.py makemigrations
 
 Apply Migrations
 ~~~~~~~~~~~~~~~~~~~~
 You nedd to stop the application.
+
     $ docker-compose -f local.yml run --rm django python manage.py migrate
 
 Delete all migrations
