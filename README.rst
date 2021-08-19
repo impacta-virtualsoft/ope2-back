@@ -5,12 +5,14 @@ Getting Start
 Install Docker in your Machine
 ^^^^^^^^^^^^^^^^^^^^^
 * WINDOWS SEE DOCUMENTATION:
-    $ https://www.docker.com/products/docker-desktop
+    https://www.docker.com/products/docker-desktop
 
 * LINUX SEE DOCUMENTATION:
-    $ https://docs.docker.com/engine/install/ubuntu/
+    https://docs.docker.com/engine/install/ubuntu/
 
-Build Docker Aplication
+Build and Start Application
+^^^^^^^^^^^^^^^^^^^^^
+Build Docker Application
 ~~~~~~~~~~~~~~~~~~~~
     $ docker-compose -f local.yml build
 
