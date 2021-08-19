@@ -1,3 +1,5 @@
+leitor
+====================
 OPE2 - BACKEND
 ====================
 
@@ -76,19 +78,6 @@ Remove all images:
     $ docker rmi -f $(docker images -q)
 
 
-Git Workflow
-~~~~~~~~~~~~
-
-Whenever starting a feature the developer needs to start a new branch.
-
-Whenever you finish, if you don't have the file watchers for black, flake8 and iSort, it is recommended to run the command below:
-
-    $ pre-commit run --all-files
-
-When all steps are 'Passed' push and generate a PR.
-
-PRs can be merged or rebased and we should always remove the branch in Github.
-
 
 Git Workflow
 ~~~~~~~~~~~~
@@ -105,3 +94,5 @@ Sempre que finalizar, caso não tenha os file watchers para black, flake8 e iSor
 Quando todas as etapas tiverem 'Passed' fazer o push e gerar um PR.
 
 Os PRs podem ser mergeados ou rebased e sempre devemos remover a branch no Github.
+
+
