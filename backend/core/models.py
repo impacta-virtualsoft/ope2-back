@@ -23,9 +23,15 @@ class Client(ModelBase):
 
 
 class Provider(ModelBase):
-    cnpj = models.CharField(verbose_name="CNPJ", unique=True, max_length=14, blank=True, null=True)
-    cpf = models.CharField(verbose_name="CPF", unique=True, max_length=11, blank=True, null=True)
-    corporate_name = models.CharField(verbose_name="Razão Social", max_length=200, blank=True)
+    cnpj = models.CharField(
+        verbose_name="CNPJ", unique=True, max_length=14, blank=True, null=True
+    )
+    cpf = models.CharField(
+        verbose_name="CPF", unique=True, max_length=11, blank=True, null=True
+    )
+    corporate_name = models.CharField(
+        verbose_name="Razão Social", max_length=200, blank=True
+    )
 
     class Meta:
         verbose_name_plural = "Fornecedores"
