@@ -16,21 +16,24 @@ Build Docker Application
 ~~~~~~~~~~~~~~~~~~~~
     $ docker-compose -f local.yml build
 
-Start Docker Aplication
+Start Docker Application
 ~~~~~~~~~~~~~~~~~~~~
     $ docker-compose -f local.yml up
 
 * Whenever the application starts all pending migrations will run automatically.
 
+Stop Docker Application
+~~~~~~~~~~~~~~~~~~~~
+    $ docker-compose -f local.yml down
+
+
 Populate Fixtures
 ~~~~~~~~~~~~~~~~~~~~
+You need to Stop Docker Application !
+
     $ docker-compose -f local.yml run --rm django python manage.py populate_db
 
 * Populate Fixtures to insertion of entries in the database.
-
-Stop Docker Aplication
-~~~~~~~~~~~~~~~~~~~~
-    $ docker-compose -f local.yml down
 
 Reset Database(Postgres)
 ^^^^^^^^^^^^^^^^^^^^^
