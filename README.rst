@@ -10,6 +10,7 @@ Install Docker in your Machine
 * LINUX SEE DOCUMENTATION:
     https://docs.docker.com/engine/install/ubuntu/
 
+
 Build and Start Application
 ^^^^^^^^^^^^^^^^^^^^^
 Build Docker Application
@@ -18,7 +19,9 @@ Build Docker Application
 
 Start Docker Aplication
 ~~~~~~~~~~~~~~~~~~~~
-    $ docker-compose -f local.yml build
+    $ docker-compose -f local.yml up
+
+    P.S.: Whenever the application starts all pending migrations will run automatically.
 
 building a aplicação
 ~~~~~~~~~~~~~~~~~~~~
