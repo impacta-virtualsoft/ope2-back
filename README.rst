@@ -42,39 +42,39 @@ Reset Database
  Docker Useful Commands
 ^^^^^^^^^^^^^^^^^^^^^
 List host images:
-
+~~~~~~~~~~~~
     $ docker images
 
 List host containers:
-
+~~~~~~~~~~~~
     $ docker ps -a
 
 List host volumes:
-
+~~~~~~~~~~~~
     $ docker volume ls
 
 Remove images that are not used:
-
+~~~~~~~~~~~~
     $ docker rmi (id ou nome da imagem)
 
 Remove unused containers:
-
+~~~~~~~~~~~~
     $ docker rm (id ou nome da imagem)
 
 Remove unused volumes:
-
+~~~~~~~~~~~~
     $ docker volume rm (id ou nome da imagem)
 
 Remove all containers and images at once:
-
+~~~~~~~~~~~~
     $ docker rm -f $(docker ps -qa)
 
 Remove all volumes at once:
-
+~~~~~~~~~~~~
     $ docker volume prune -f
 
 Remove all images:
-
+~~~~~~~~~~~~
     $ docker rmi -f $(docker images -q)
 
 
