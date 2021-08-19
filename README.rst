@@ -48,6 +48,40 @@ Reset Database(Postgres)
     $ docker volume rm ope2-back_local_postgres_data
 
 
+Work in Project
+^^^^^^^^^^^^^^^^^^^^^
+
+Super User Pattern
+~~~~~~~~~~~~~~~~~~~~
+If you populate fixtures, acess http://localhost:8000/admin or http://0.0.0.0:8000/admin
+
+Usuario: admin
+Senha: admin@admin
+
+If you want to create a super user run:
+    $ docker-compose -f local.yml run --rm django python manage.py createsuperuser
+
+Create New Migrations
+~~~~~~~~~~~~~~~~~~~~
+You nedd to stop the application.
+    $ docker-compose -f local.yml run --rm django python manage.py makemigrations
+
+Apply Migrations
+~~~~~~~~~~~~~~~~~~~~
+You nedd to stop the application.
+    $ docker-compose -f local.yml run --rm django python manage.py migrate
+
+Delete all migrations
+~~~~~~~~~~~~~~~~~~~~
+You nedd to stop the application.
+
+    $ find . -path "*/migrations/*.py" -not -name "__init__.py" -not -path "*/sites/*" -delete
+    $ find . -path "*/migrations/*.pyc"  -delete
+
+Generate Project Fixtures
+~~~~~~~~~~~~~~~~~~~~
+    $ docker-compose -f local.yml run --rm django python manage.py dumpdata APP --indent 4 > ./backend/APP/fixtures/NUMBER_MODEL.json
+
 Docker Useful Commands
 ^^^^^^^^^^^^^^^^^^^^^
 List host images:
