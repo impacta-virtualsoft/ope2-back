@@ -56,6 +56,7 @@ Super User Pattern
 If you populate fixtures, acess http://localhost:8000/admin or http://0.0.0.0:8000/admin
 
 Usuario: admin
+
 Senha: admin@admin
 
 If you want to create a super user run:
