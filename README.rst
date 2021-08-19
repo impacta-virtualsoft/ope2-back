@@ -32,12 +32,7 @@ Stop Docker Aplication
 ~~~~~~~~~~~~~~~~~~~~
     $ docker-compose -f local.yml down
 
-
-Work in Project
-^^^^^^^^^^^^^^^^^^^^^
-Reset Database
-^^^^^^^^^^^^^^^^^^^^^
- Docker Useful Commands
+Docker Useful Commands
 ^^^^^^^^^^^^^^^^^^^^^
 List host images:
 ~~~~~~~~~~~~
