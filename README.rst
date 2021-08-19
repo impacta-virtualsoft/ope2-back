@@ -1,4 +1,4 @@
-leitor
+OPE2
 ====================
 
 Campanhas TradeMkt
@@ -173,7 +173,6 @@ Aplicação em funcionamento:
 
 ps: O comando exec não funciona ver issue8_
 
-.. _issue8: https://github.com/Clint-Tecnologia/leitor/issues/8
 
 Aplicação desligada:
 
