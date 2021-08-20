@@ -1,8 +1,9 @@
-from rest_framework import viewsets, mixins, status
+from rest_framework import mixins, status, viewsets
 from rest_framework.response import Response
 
 from backend.product.api.serializers import ProductSerializer
 from backend.product.models import Product
+
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()

@@ -13,6 +13,7 @@ class ClientAdmin(ModelAdmin):
 class ProviderAdmin(ModelAdmin):
     ...
 
+
 @register(LogEntry)
 class LogAdmin(ModelAdmin):
     ...

@@ -6,6 +6,7 @@ from django.urls import include, path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from rest_framework.authtoken.views import obtain_auth_token
+
 from backend.users.api.views import PermissionsUser
 
 urlpatterns = [
@@ -32,8 +33,8 @@ urlpatterns += [
     path("auth-token/", obtain_auth_token),
 ]
 
-urlpatterns +=[
-    path("user/permission/", PermissionsUser.as_view(), name='permission'),
+urlpatterns += [
+    path("user/permission/", PermissionsUser.as_view(), name="permission"),
 ]
 
 if settings.DEBUG:

@@ -22,13 +22,13 @@ class User(AbstractUser):
         return reverse("users:detail", kwargs={"username": self.username})
 
     def is_cashier(self):
-        return self.groups.filter(name='Caixa')
+        return self.groups.filter(name="Caixa")
 
     def is_kitchen(self):
-        return self.groups.filter(name='Cozinha')
+        return self.groups.filter(name="Cozinha")
 
     def is_adm(self):
-        return self.groups.filter(name='Administrativo')
+        return self.groups.filter(name="Administrativo")
 
     def is_owner(self):
-        return self.groups.filter(name='Proprietário')
+        return self.groups.filter(name="Proprietário")
