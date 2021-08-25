@@ -4,9 +4,8 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-# force manage.py to use production settings
-# OS env variables have precedence over .env vars
-export DJANGO_SETTINGS_MODULE='config.settings.production'
+
+
 
 if [ -z "${POSTGRES_USER}" ]; then
     base_postgres_image_default_user='postgres'
@@ -35,9 +34,9 @@ sys.exit(0)
 END
 }
 until postgres_ready; do
-  >&2 echo 'Waiting for PostgreSQL to become available...'
+  >&2
   sleep 1
 done
->&2 echo 'PostgreSQL is available'
+>&2
 
 exec "$@"

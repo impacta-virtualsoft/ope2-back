@@ -69,6 +69,7 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "rest_framework",
+    "rest_framework_swagger",
     "rest_framework.authtoken",
     "corsheaders",
 ]
@@ -190,6 +191,9 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "backend.utils.context_processors.settings_context",
             ],
+            'libraries': {
+                'staticfiles': 'django.templatetags.static',
+            },
         },
     }
 ]
@@ -246,7 +250,7 @@ LOGGING = {
     "formatters": {
         "verbose": {
             "format": "%(levelname)s %(asctime)s %(module)s "
-            "%(process)d %(thread)d %(message)s"
+                      "%(process)d %(thread)d %(message)s"
         }
     },
     "handlers": {
@@ -258,7 +262,6 @@ LOGGING = {
     },
     "root": {"level": "INFO", "handlers": ["console"]},
 }
-
 
 # django-allauth
 # ------------------------------------------------------------------------------
@@ -278,10 +281,23 @@ SOCIALACCOUNT_ADAPTER = "backend.users.adapters.SocialAccountAdapter"
 # -------------------------------------------------------------------------------
 # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
 REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.TokenAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+}
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'api_key': {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'Authorization'
+        }
+    },  # setting to pass token in header
+    'USE_SESSION_AUTH': False,
+
 }
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
