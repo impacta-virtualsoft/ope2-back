@@ -6,7 +6,7 @@ DJANGO_SECRET_KEY=aknAsRKGsY3knV7otGDud6rvbkyMxpqj1E5dVao82kDUqu3QH0827adGqtMhZg
 DJANGO_ADMIN_URL=Bf3gXzTcX201gxO3mH1sqCg9FCMxOgEi/
 DJANGO_ALLOWED_HOSTS=virtualsoft.dev.br
 DJANGO_GCP_STORAGE_BUCKET_NAME=ope2-back_media
-DJANGO_DEFAULT_FROM_EMAIL=virtualsoft@virtualsoft.dev.br
+DJANGO_DEFAULT_FROM_EMAIL=virtualsoft@example.com
 DJANGO_ADMIN_URL=admin
 # Security
 # ------------------------------------------------------------------------------
