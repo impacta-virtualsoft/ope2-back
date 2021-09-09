@@ -1,24 +1,47 @@
-from django.contrib.auth import get_user_model
-from rest_framework import status
-from rest_framework.decorators import action
-from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin
+from rest_framework import status, viewsets
 from rest_framework.response import Response
-from rest_framework.viewsets import GenericViewSet
+from rest_framework.views import APIView
+# import coreapi
+# from rest_framework.schemas import AutoSchema
 
-from .serializers import UserSerializer
+from backend.users.api.serializers import UserSerializer
+from backend.users.models import User
 
-User = get_user_model()
+# class UserViewSchema(AutoSchema):
+#
+#     def get_manual_fields(self, path, method):
+#         extra_fields = []
+#         if method.lower() in ['post', 'put']:
+#             extra_fields = [
+#                 coreapi.Field('username')
+#             ]
+#         manual_fields = super().get_manual_fields(path, method)
+#         return manual_fields + extra_fields
 
-
-class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericViewSet):
-    serializer_class = UserSerializer
+class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
-    lookup_field = "username"
+    serializer_class = UserSerializer
+    ordering = ("id",)
 
-    def get_queryset(self, *args, **kwargs):
-        return self.queryset.filter(id=self.request.user.id)
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(
+            serializer.data, status=status.HTTP_201_CREATED, headers=headers
+        )
 
-    @action(detail=False, methods=["GET"])
-    def me(self, request):
-        serializer = UserSerializer(request.user, context={"request": request})
-        return Response(status=status.HTTP_200_OK, data=serializer.data)
+
+class PermissionsUser(APIView):
+    def get(self, request, *args, **kwargs):
+        groups = self.request.user.groups.first()
+        permissions = {}
+        for permission in groups.permissions.all():
+            authorization = permission.codename.split("_")
+            if permissions.get(authorization[1]):
+                permissions[authorization[1]].append(authorization[0])
+            else:
+                permissions[authorization[1]] = []
+                permissions[authorization[1]].append(authorization[0])
+        return Response(permissions)
