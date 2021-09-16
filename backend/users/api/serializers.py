@@ -25,12 +25,10 @@ class UserSerializer(serializers.ModelSerializer):
     # groups = GroupSerializer(many=True)
     class Meta:
         model = User
-        fields = ["username", "name", "email", "password", "groups"]
+        fields = ["id", "email", "password", "groups"]
 
     def create(self, validated_data):
         create = {
-            "username": validated_data["username"],
-            "name": validated_data["name"],
             "email": validated_data["email"],
             "password": validated_data["password"],
             "is_staff": True,
@@ -39,8 +37,8 @@ class UserSerializer(serializers.ModelSerializer):
         group = validated_data["groups"][0]
         user.groups.add(group)
         # user.save()
-        serializable_coupon = model_to_dict(user)
-        msg = json.dumps(serializable_coupon, indent=4, sort_keys=True, default=str)
+        serializable_user = model_to_dict(user)
+        msg = json.dumps(serializable_user, indent=4, sort_keys=True, default=str)
         LogEntry.objects.log_action(
             user_id=user.id,
             content_type_id=ContentType.objects.get_for_model(
