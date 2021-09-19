@@ -1,0 +1,112 @@
+[
+{
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+        "password": "argon2$argon2i$v=19$m=512,t=2,p=2$dUkwN3lLYkpkTDh3$yj28XiEVx0IdVQKOmFOarQ",
+        "last_login": "2021-09-16T20:22:26.666Z",
+        "is_superuser": true,
+        "username": "backend",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-09-16T20:19:58.881Z",
+        "email": "backend@virtualsoft.dev.br",
+        "name": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+        "password": "argon2$argon2i$v=19$m=512,t=2,p=2$OVhabDFnZkNqN09C$+B+ZxZwc9xNvWNhhpiwwhg",
+        "last_login": null,
+        "is_superuser": true,
+        "username": "frontend",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-09-16T20:21:07.354Z",
+        "email": "frontend@virtualsoft.dev.br",
+        "name": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+        "password": "argon2$argon2i$v=19$m=512,t=2,p=2$MXM0REJQY2lrWWpN$YnDl5H1UK5n0eSlpjc3S4w",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "administrativo",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-09-16T20:26:55Z",
+        "email": "administrativo@divinahamburgueria.com.br",
+        "name": "",
+        "groups": [
+            3
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 4,
+    "fields": {
+        "password": "argon2$argon2i$v=19$m=512,t=2,p=2$WnI5VDJFWUJ3Wno5$eC2Bxndxu2Rr26tEyfsC2A",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "caixa",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-09-16T20:27:38Z",
+        "email": "caixa@divinahamburgueria.com.br",
+        "name": "",
+        "groups": [
+            1
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 5,
+    "fields": {
+        "password": "argon2$argon2i$v=19$m=512,t=2,p=2$WllNU1k0ak9PRlVt$bD8jzVO5UBH4nYsZxSeRdA",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "cozinha",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-09-16T20:28:14Z",
+        "email": "cozinha@divinahamburgueria.com.br",
+        "name": "",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 6,
+    "fields": {
+        "password": "argon2$argon2i$v=19$m=512,t=2,p=2$NHkyMkwzeVhDR2dj$OKZsjLeYcWYnLvblDrpFxQ",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "proprietario",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-09-16T20:28:50Z",
+        "email": "proprietario@divinahamburgueria.com.br",
+        "name": "",
+        "groups": [
+            4
+        ],
+        "user_permissions": []
+    }
+}
+]

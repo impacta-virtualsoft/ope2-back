@@ -33,6 +33,20 @@ class Command(BaseCommand):
 
         app_name = kwargs["app_name"] if "app_name" in kwargs else None
 
+        # groups
+        if app_name is None or app_name == "users":
+            self.stdout.write(self.style.HTTP_NOT_MODIFIED("\nprocesssando app: users"))
+
+            diretorio_fixtures = "backend/users/fixtures/groups/"
+            fixtures = sorted(os.listdir(diretorio_fixtures))
+
+            for fixture in fixtures:
+                if fixture != "data.json":
+                    self.stdout.write(self.style.SQL_KEYWORD("\nmodel: " + fixture))
+                    management.call_command("loaddata", diretorio_fixtures + fixture)
+
+            self.stdout.write(self.style.SUCCESS("\nimportado com sucesso\n"))
+
         # users
         if app_name is None or app_name == "users":
             self.stdout.write(self.style.HTTP_NOT_MODIFIED("\nprocesssando app: users"))

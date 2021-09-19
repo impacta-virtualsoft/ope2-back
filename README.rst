@@ -58,9 +58,13 @@ Super User Pattern
 ~~~~~~~~~~~~~~~~~~~~
 If you populate fixtures, acess http://localhost:8000/admin or http://0.0.0.0:8000/admin
 
-Usuario: admin
+Email: backend@virtualsoft.dev.br
 
-Senha: admin@admin
+Senha: backend@backend
+
+Email: frontend@virtualsoft.dev.br
+
+Senha: frontend@frontend
 
 If you want to create a super user run:
 

@@ -17,3 +17,12 @@ WEB_CONCURRENCY=4
 # Redis
 # ------------------------------------------------------------------------------
 REDIS_URL=redis://redis:6379/0
+
+# Email Config
+# ------------------------------------------------------------------------------
+DJANGO_EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
+DJANGO_EMAIL_HOST=smtp.gmail.com
+DJANGO_EMAIL_PORT=587
+DJANGO_EMAIL_USE_TLS=True
+DJANGO_EMAIL_HOST_USER=virtualsoft.tecnologia@gmail.com
+DJANGO_EMAIL_HOST_PASSWORD=virtualsoft@OPE2
