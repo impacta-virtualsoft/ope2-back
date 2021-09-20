@@ -11,7 +11,7 @@ class ModelBase(models.Model):
 
 
 class Client(ModelBase):
-    cpf = models.CharField(verbose_name="CPF", unique=True, max_length=11)
+    cpf = models.CharField(verbose_name="CPF", unique=True, max_length=11, blank=True, null=True)
     name = models.CharField(verbose_name="Nome", max_length=200, blank=True)
 
     class Meta:
