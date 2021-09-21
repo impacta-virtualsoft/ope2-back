@@ -11,7 +11,7 @@ from rest_framework_swagger.views import get_swagger_view
 
 from backend.users.api.views import PermissionsUser
 
-schema_view = get_swagger_view(title='Pastebin API')
+schema_view = get_swagger_view(title='Virtualsoft API')
 
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
