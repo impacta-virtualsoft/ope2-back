@@ -4,15 +4,17 @@
     "pk": 1,
     "fields": {
         "password": "argon2$argon2i$v=19$m=512,t=2,p=2$dUkwN3lLYkpkTDh3$yj28XiEVx0IdVQKOmFOarQ",
-        "last_login": "2021-09-16T20:22:26.666Z",
+        "last_login": "2021-09-20T17:26:56Z",
         "is_superuser": true,
         "username": "backend",
         "is_staff": true,
         "is_active": true,
-        "date_joined": "2021-09-16T20:19:58.881Z",
+        "date_joined": "2021-09-16T20:19:58Z",
         "email": "backend@virtualsoft.dev.br",
         "name": "",
-        "groups": [],
+        "groups": [
+            5
+        ],
         "user_permissions": []
     }
 },
@@ -26,10 +28,12 @@
         "username": "frontend",
         "is_staff": true,
         "is_active": true,
-        "date_joined": "2021-09-16T20:21:07.354Z",
+        "date_joined": "2021-09-16T20:21:07Z",
         "email": "frontend@virtualsoft.dev.br",
         "name": "",
-        "groups": [],
+        "groups": [
+            5
+        ],
         "user_permissions": []
     }
 },
