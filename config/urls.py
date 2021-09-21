@@ -3,9 +3,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.auth import views as auth_views
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
+from django.views.generic import RedirectView
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 from rest_framework_swagger.views import get_swagger_view
 
@@ -15,17 +16,17 @@ schema_view = get_swagger_view(title='Virtualsoft API')
 
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
-    path(settings.ADMIN_URL, admin.site.urls),
+    re_path(settings.ADMIN_URL, admin.site.urls),
     # User management
-    path("users/", include("backend.users.urls", namespace="users")),
-    path("accounts/", include("allauth.urls")),
-    path("login/", obtain_jwt_token),
-    path("refresh-token/", refresh_jwt_token),
-    path("swagger/", schema_view),
-    path("reset_password/", auth_views.PasswordResetView.as_view(), name="reset_password"),
-    path("reset_password_sent/", auth_views.PasswordResetDoneView.as_view(), name="password_reset_done"),
-    path("reset/<uidb64>/<token>/", auth_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
-    path("reset_password_complete/", auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete"),
+    re_path(r"^users/", include("backend.users.urls", namespace="users")),
+    re_path(r"^accounts/", include("allauth.urls")),
+    re_path(r'^login', obtain_jwt_token),
+    re_path(r"^refresh-token/", refresh_jwt_token),
+    re_path(r"^swagger/", schema_view),
+    re_path(r"^reset_password/", auth_views.PasswordResetView.as_view(), name="reset_password"),
+    re_path(r"^reset_password_sent/", auth_views.PasswordResetDoneView.as_view(), name="password_reset_done"),
+    re_path(r"^reset/<uidb64>/<token>/", auth_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
+    re_path(r"^reset_password_complete/", auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:
     # Static file serving when using Gunicorn + Uvicorn for local web socket development
@@ -34,12 +35,12 @@ if settings.DEBUG:
 # API URLS
 urlpatterns += [
     # API base url
-    path("api/", include("config.api_router")),
+    re_path(r"^api/", include("config.api_router")),
     # DRF auth token
 ]
 
 urlpatterns += [
-    path("user/permission/", PermissionsUser.as_view(), name="permission"),
+    path("api/user/permission/", PermissionsUser.as_view(), name="permission"),
 ]
 
 if settings.DEBUG:
