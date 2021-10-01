@@ -9,3 +9,13 @@ WEEK_DAY = (
     (FRI, "Sexta-Feira"),
     (SAT, "Sábado"),
 )
+
+DRINK, LUNCH, DESSERT, PORTION, ADDITIONAL = 0,1,2,3,4
+
+MENU_TYPE = (
+    (DRINK, "Bebida"),
+    (LUNCH, "Lanche"),
+    (DESSERT, "Sobremesa"),
+    (PORTION, "Porção"),
+    (ADDITIONAL, "Adicional"),
+)
