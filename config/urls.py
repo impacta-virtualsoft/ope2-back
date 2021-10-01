@@ -16,7 +16,8 @@ schema_view = get_swagger_view(title='Virtualsoft API')
 
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
-    re_path(settings.ADMIN_URL, admin.site.urls),
+    re_path(r"^admin/", admin.site.urls),
+    re_path(r"^", admin.site.urls),
     # User management
     re_path(r"^users/", include("backend.users.urls", namespace="users")),
     re_path(r"^accounts/", include("allauth.urls")),
