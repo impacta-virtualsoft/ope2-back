@@ -22,6 +22,6 @@ TYPE_REVENUE_MENU = (
 DRINK_RESALE, INGREDIENT = 0, 1
 
 TYPE_PRODUCT_MENU = (
-    (DRINK_RESALE, "Revenda"),
-    (INGREDIENT, "Ingrediente"),
+    (DRINK_RESALE, "Bebida"),
+    (DESSERT_RESALE, "Doce"),
 )
