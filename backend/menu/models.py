@@ -85,7 +85,7 @@ class RevenueMenu(ModelBase):
 
 class ProductMenu(ModelBase):
     product = models.ForeignKey(
-        Product, limit_choices_to={"type": TYPE_PRODUCT.RESALE}, on_delete=models.CASCADE, verbose_name="Produtos"
+        Product, on_delete=models.CASCADE, verbose_name="Produtos"
     )
     menu = models.ForeignKey(
         Menu, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Cardápio"
@@ -102,21 +102,3 @@ class ProductMenu(ModelBase):
     class Meta:
         verbose_name_plural = "Cardapio de Produtos"
         verbose_name = "Cardapio de Produto"
-
-
-class AdditionalMenu(ModelBase):
-    product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, limit_choices_to={"type": TYPE_PRODUCT.INGREDIENT}, verbose_name="Adicional"
-    )
-    revenue = models.ForeignKey(
-        Revenue, on_delete=models.CASCADE, limit_choices_to={"type": TYPE_REVENUE_MENU.LUNCH}, null=True, blank=True, verbose_name="Lanches"
-    )
-    value = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
-    status = models.IntegerField(choices=((0, 'Inativo'), (1, 'Ativo')), default=1)
-
-    def __str__(self):
-        return self.product.__str__()
-
-    class Meta:
-        verbose_name_plural = "Adicionais"
-        verbose_name = "Adicional"

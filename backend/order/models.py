@@ -22,3 +22,18 @@ class SalesOrder(ModelBase):
     class Meta:
         verbose_name_plural = "Pedidos de Venda"
         verbose_name = "Pedido de Venda"
+
+# class AdditionalOrder(ModelBase):
+#     product_menu = models.ForeignKey(
+#         ProductMenu, on_delete=models.CASCADE, limit_choices_to={"type": TYPE_PRODUCT_MENU.ADDITIONAL}, verbose_name="Adicional"
+#     )
+#     revenue_menu = models.ForeignKey(
+#         RevenueMenu, on_delete=models.CASCADE, limit_choices_to={"type": TYPE_REVENUE_MENU.LUNCH}, verbose_name="Lanches"
+#     )
+#
+#     def __str__(self):
+#         return self.product.__str__()
+#
+#     class Meta:
+#         verbose_name_plural = "Adicionais no Pedido"
+#         verbose_name = "Adicional no Pedido"
