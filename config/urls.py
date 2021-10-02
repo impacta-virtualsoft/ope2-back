@@ -7,7 +7,7 @@ from django.urls import include, path, re_path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from django.views.generic import RedirectView
-from rest_framework_simplejwt.views import (TokenObtainPairView,TokenRefreshView,)
+from rest_framework_simplejwt.views import (TokenObtainPairView,TokenRefreshView,TokenRefreshSlidingView)
 from rest_framework_swagger.views import get_swagger_view
 
 from backend.users.api.views import PermissionsUser
@@ -22,6 +22,7 @@ urlpatterns = [
     re_path(r"^accounts/", include("allauth.urls")),
     re_path(r'^login', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     re_path(r"^refresh-token/", TokenRefreshView.as_view(), name='token_refresh'),
+    re_path(r"^refresh-token-2/", TokenRefreshSlidingView.as_view(), name='token_refresh_2'),
     re_path(r"^swagger/", schema_view),
     re_path(r"^reset_password/", auth_views.PasswordResetView.as_view(), name="reset_password"),
     re_path(r"^reset_password_sent/", auth_views.PasswordResetDoneView.as_view(), name="password_reset_done"),
