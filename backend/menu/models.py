@@ -1,10 +1,8 @@
 from django.db import models
 
 from backend.core.models import ModelBase
-from backend.menu.constants import WEEK_DAY, MENU_TYPE
+from backend.menu.constants import WEEK_DAY, TYPE_REVENUE_MENU, TYPE_PRODUCT_MENU
 from backend.product.models import Product, Revenue
-from backend.product.constants import RESALE, INGREDIENT, TYPE_PRODUCT
-
 
 class Menu(ModelBase):
     description = models.CharField(max_length=200)
@@ -63,12 +61,15 @@ class Menu(ModelBase):
 
 
 # DRINK, LUNCH, DESSERT, PORTION, ADDITIONAL
-class LunchMenu(ModelBase):
+class RevenueMenu(ModelBase):
     revenue = models.ForeignKey(
-        Revenue, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Receita"
+        Revenue, on_delete=models.CASCADE, verbose_name="Receitas"
     )
     menu = models.ForeignKey(
         Menu, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Cardápio"
+    )
+    type = models.IntegerField(
+        choices=TYPE_REVENUE_MENU, default=0, verbose_name="Tipo de Receita"
     )
     value = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
     status = models.IntegerField(choices=((0, 'Inativo'), (1, 'Ativo')), default=1)
@@ -77,16 +78,19 @@ class LunchMenu(ModelBase):
         return self.revenue.__str__()
 
     class Meta:
-        verbose_name_plural = "Lanches"
-        verbose_name = "Lanche"
+        verbose_name_plural = "Cardapio de Receitas"
+        verbose_name = "Cardapio de Receita"
 
 
-class DrinkMenu(ModelBase):
+class ProductMenu(ModelBase):
     product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, limit_choices_to={"type": RESALE}, verbose_name="Adicionais"
+        Product, on_delete=models.CASCADE, verbose_name="Produtos"
     )
     menu = models.ForeignKey(
         Menu, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Cardápio"
+    )
+    type = models.IntegerField(
+        choices=TYPE_PRODUCT_MENU, default=0, verbose_name="Tipo de Produto"
     )
     value = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
     status = models.IntegerField(choices=((0, 'Inativo'), (1, 'Ativo')), default=1)
@@ -95,59 +99,5 @@ class DrinkMenu(ModelBase):
         return self.product.__str__()
 
     class Meta:
-        verbose_name_plural = "Bebidas"
-        verbose_name = "Bebida"
-
-
-class DessertMenu(ModelBase):
-    product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, limit_choices_to={"type": INGREDIENT}, verbose_name="Adicionais"
-    )
-    menu = models.ForeignKey(
-        Menu, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Cardápio"
-    )
-    value = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
-    status = models.IntegerField(choices=((0, 'Inativo'), (1, 'Ativo')), default=1)
-
-    def __str__(self):
-        return self.product.__str__()
-
-    class Meta:
-        verbose_name_plural = "Sobremesas"
-        verbose_name = "Sobremesa"
-
-
-class PortionMenu(ModelBase):
-    product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, limit_choices_to={"type": INGREDIENT}, verbose_name="Adicionais"
-    )
-    menu = models.ForeignKey(
-        Menu, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Cardápio"
-    )
-    value = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
-    status = models.IntegerField(choices=((0, 'Inativo'), (1, 'Ativo')), default=1)
-
-    def __str__(self):
-        return self.product.__str__()
-
-    class Meta:
-        verbose_name_plural = "Porções"
-        verbose_name = "Porção"
-
-
-class AdditionalMenu(ModelBase):
-    product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, limit_choices_to={"type": INGREDIENT}, verbose_name="Adicionais"
-    )
-    menu = models.ForeignKey(
-        Menu, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Cardápio"
-    )
-    value = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
-    status = models.IntegerField(choices=((0, 'Inativo'), (1, 'Ativo')), default=1)
-
-    def __str__(self):
-        return self.product.__str__()
-
-    class Meta:
-        verbose_name_plural = "Adicionais"
-        verbose_name = "Adicional"
+        verbose_name_plural = "Cardapio de Produtos"
+        verbose_name = "Cardapio de Produto"

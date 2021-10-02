@@ -10,12 +10,18 @@ WEEK_DAY = (
     (SAT, "Sábado"),
 )
 
-DRINK, LUNCH, DESSERT, PORTION, ADDITIONAL = 0,1,2,3,4
+DRINK, LUNCH, DESSERT, PORTION, ADDITIONAL = 0,1,2,3
 
-MENU_TYPE = (
+TYPE_REVENUE_MENU = (
     (DRINK, "Bebida"),
     (LUNCH, "Lanche"),
     (DESSERT, "Sobremesa"),
     (PORTION, "Porção"),
-    (ADDITIONAL, "Adicional"),
+)
+
+DRINK_RESALE, INGREDIENT = 0, 1
+
+TYPE_PRODUCT_MENU = (
+    (DRINK_RESALE, "Revenda"),
+    (INGREDIENT, "Ingrediente"),
 )
