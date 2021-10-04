@@ -1,9 +1,9 @@
 from django.conf import settings
 from rest_framework.routers import DefaultRouter, SimpleRouter
 
+from backend.core.api.views import ClientViewSet, ProviderViewSet
 from backend.product.api.views import ProductViewSet
 from backend.users.api.views import UserViewSet
-from backend.core.api.views import ClientViewSet, ProviderViewSet
 
 if settings.DEBUG:
     router = DefaultRouter()

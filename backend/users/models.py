@@ -8,13 +8,13 @@ class User(AbstractUser):
     """Default user for OPE2 Divina Hamburgueria."""
 
     #: First and last name do not cover name patterns around the globe
-    email = models.EmailField(_('Email'), unique=True)
+    email = models.EmailField(_("Email"), unique=True)
     name = models.CharField(_("Name of User"), blank=True, max_length=255)
     first_name = None  # type: ignore
     last_name = None  # type: ignore
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username"]
 
     def get_absolute_url(self):
         """Get url for user's detail view.
@@ -31,13 +31,11 @@ class User(AbstractUser):
         else:
             return False
 
-
     def is_kitchen(self):
         if self.groups.filter(name="Cozinha"):
             return True
         else:
             return False
-
 
     def is_adm(self):
         if self.groups.filter(name="Administrativo"):

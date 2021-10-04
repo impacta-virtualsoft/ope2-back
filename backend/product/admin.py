@@ -21,6 +21,7 @@ class RevenueAdmin(ModelAdmin):
     ]
     list_display = ["description"]
 
+
 @register(UnitMeasure)
 class UnitMeasureAdmin(ModelAdmin):
     ...

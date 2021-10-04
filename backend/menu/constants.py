@@ -10,7 +10,7 @@ WEEK_DAY = (
     (SAT, "Sábado"),
 )
 
-DRINK, LUNCH, DESSERT, PORTION = 0,1,2,3
+DRINK, LUNCH, DESSERT, PORTION = 0, 1, 2, 3
 
 TYPE_REVENUE_MENU = (
     (DRINK, "Bebida"),

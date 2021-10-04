@@ -21,7 +21,7 @@ class Product(ModelBase):
     type = models.IntegerField(
         choices=TYPE_PRODUCT, default=0, verbose_name="Tipo de Produto"
     )
-
+    unit_measure = models.ForeignKey(UnitMeasure, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.description
@@ -53,7 +53,6 @@ class RevenueProduct(ModelBase):
     product = models.ForeignKey(
         Product, on_delete=models.CASCADE, limit_choices_to={"type": INGREDIENT}
     )
-    unit_measure = models.ForeignKey(UnitMeasure, on_delete=models.CASCADE)
     quantity = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     def __str__(self):

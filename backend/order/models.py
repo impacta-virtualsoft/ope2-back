@@ -23,6 +23,7 @@ class SalesOrder(ModelBase):
         verbose_name_plural = "Pedidos de Venda"
         verbose_name = "Pedido de Venda"
 
+
 # class AdditionalOrder(ModelBase):
 #     product_menu = models.ForeignKey(
 #         ProductMenu, on_delete=models.CASCADE, limit_choices_to={"type": TYPE_PRODUCT_MENU.ADDITIONAL}, verbose_name="Adicional"

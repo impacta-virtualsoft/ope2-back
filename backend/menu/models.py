@@ -1,16 +1,17 @@
 from django.db import models
 
 from backend.core.models import ModelBase
-from backend.menu.constants import WEEK_DAY, TYPE_REVENUE_MENU, TYPE_PRODUCT_MENU
+from backend.menu.constants import TYPE_PRODUCT_MENU, TYPE_REVENUE_MENU, WEEK_DAY
 from backend.product.constants import TYPE_PRODUCT
 from backend.product.models import Product, Revenue
+
 
 class Menu(ModelBase):
     description = models.CharField(max_length=200)
     weekday = models.IntegerField(
         choices=WEEK_DAY, default=0, verbose_name="Dia da Semana"
     )
-    status = models.IntegerField(choices=((0, 'Inativo'),(1, 'Ativo')),default=1)
+    status = models.IntegerField(choices=((0, "Inativo"), (1, "Ativo")), default=1)
 
     def __str__(self):
         return self.description
@@ -73,7 +74,7 @@ class RevenueMenu(ModelBase):
         choices=TYPE_REVENUE_MENU, default=0, verbose_name="Tipo de Receita"
     )
     value = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
-    status = models.IntegerField(choices=((0, 'Inativo'), (1, 'Ativo')), default=1)
+    status = models.IntegerField(choices=((0, "Inativo"), (1, "Ativo")), default=1)
 
     def __str__(self):
         return self.revenue.__str__()
@@ -94,7 +95,7 @@ class ProductMenu(ModelBase):
         choices=TYPE_PRODUCT_MENU, default=0, verbose_name="Tipo de Produto"
     )
     value = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
-    status = models.IntegerField(choices=((0, 'Inativo'), (1, 'Ativo')), default=1)
+    status = models.IntegerField(choices=((0, "Inativo"), (1, "Ativo")), default=1)
 
     def __str__(self):
         return self.product.__str__()
