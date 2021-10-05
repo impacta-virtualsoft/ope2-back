@@ -64,6 +64,7 @@ class UserViewSet(viewsets.ModelViewSet):
 class PermissionsUser(APIView):
     def get(self, request, *args, **kwargs):
         groups = self.request.user.groups.first()
+        permissions = {}
         for permission in groups.permissions.all():
             authorization = permission.codename.split("_")
             if permissions.get(authorization[1]):

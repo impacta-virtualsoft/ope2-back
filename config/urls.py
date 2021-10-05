@@ -8,12 +8,12 @@ from django.views import defaults as default_views
 from django.views.generic import RedirectView, TemplateView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
-    TokenRefreshSlidingView,
     TokenRefreshView,
 )
 from rest_framework_swagger.views import get_swagger_view
 
 from backend.users.api.views import PermissionsUser
+from backend.product.api.views import TypeProduct
 
 schema_view = get_swagger_view(title="Virtualsoft API")
 
@@ -26,9 +26,6 @@ urlpatterns = [
     re_path(r"^accounts/", include("allauth.urls")),
     re_path(r"^login", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     re_path(r"^refresh-token/", TokenRefreshView.as_view(), name="token_refresh"),
-    re_path(
-        r"^refresh-token-2/", TokenRefreshSlidingView.as_view(), name="token_refresh_2"
-    ),
     re_path(r"^swagger/", schema_view),
     re_path(
         r"^reset_password/",
@@ -63,7 +60,8 @@ urlpatterns += [
 ]
 
 urlpatterns += [
-    path("api/user/permission/", PermissionsUser.as_view(), name="permission"),
+    re_path(r"^api/type/product/", TypeProduct.as_view(), name="type"),
+    re_path(r"^api/user/permission/", PermissionsUser.as_view(), name="permission"),
 ]
 
 if settings.DEBUG:
