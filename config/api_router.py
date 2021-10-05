@@ -2,7 +2,12 @@ from django.conf import settings
 from rest_framework.routers import DefaultRouter, SimpleRouter
 
 from backend.core.api.views import ClientViewSet, ProviderViewSet
-from backend.product.api.views import ProductViewSet, ProductDetailViewSet, UnitMeasureViewSet, RevenueViewSet
+from backend.product.api.views import (
+    ProductDetailViewSet,
+    ProductViewSet,
+    RevenueViewSet,
+    UnitMeasureViewSet,
+)
 from backend.users.api.views import UserViewSet
 
 if settings.DEBUG:

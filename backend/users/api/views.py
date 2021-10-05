@@ -64,12 +64,20 @@ class UserViewSet(viewsets.ModelViewSet):
 class PermissionsUser(APIView):
     def get(self, request, *args, **kwargs):
         groups = self.request.user.groups.first()
-        permissions = {}
+        dict_permission = {"user_email": self.request.user.email, "permissions": []}
         for permission in groups.permissions.all():
             authorization = permission.codename.split("_")
-            if permissions.get(authorization[1]):
-                permissions[authorization[1]].append(authorization[0])
-            else:
-                permissions[authorization[1]] = []
-                permissions[authorization[1]].append(authorization[0])
-        return Response(permissions)
+            try:
+                if dict_permission["permissions"][-1].get(authorization[1]):
+                    dict_permission["permissions"][-1][authorization[1]].append(
+                        authorization[0]
+                    )
+                else:
+                    dict_permission["permissions"].append(
+                        {authorization[1]: [authorization[0]]}
+                    )
+            except IndexError:
+                dict_permission["permissions"].append(
+                    {authorization[1]: [authorization[0]]}
+                )
+        return Response(dict_permission)

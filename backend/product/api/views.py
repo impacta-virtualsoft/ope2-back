@@ -1,41 +1,63 @@
-from rest_framework import mixins, status, viewsets, filters
+from rest_framework import filters, mixins, status, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from backend.product.api.serializers import ProductSerializer, ProductDetailsSerializer, UnitMeasureSerializer, RevenueSerializer, RevenueProductSerializer
-from backend.product.models import Product, UnitMeasure, Revenue, RevenueProduct
+from backend.product.api.serializers import (
+    ProductDetailsSerializer,
+    ProductSerializer,
+    RevenueSerializer,
+    UnitMeasureSerializer,
+)
 from backend.product.constants import TYPE_PRODUCT
+from backend.product.models import Product, Revenue, UnitMeasure
 
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    http_method_names = ['get', 'post', 'patch', 'delete', ]
+    http_method_names = [
+        "get",
+        "post",
+        "patch",
+        "delete",
+    ]
 
 
 class ProductDetailViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductDetailsSerializer
-    http_method_names = ['get']
+    http_method_names = ["get"]
+
 
 class TypeProduct(APIView):
     def get(self, request, *args, **kwargs):
         type_product = {}
         for a, b in TYPE_PRODUCT:
             type_product[a] = b
-        return Response(type_product,status=status.HTTP_200_OK)
+        return Response(type_product, status=status.HTTP_200_OK)
 
 
 class UnitMeasureViewSet(viewsets.ModelViewSet):
     queryset = UnitMeasure.objects.all()
     serializer_class = UnitMeasureSerializer
-    http_method_names = ['get', 'post', 'patch', 'delete', ]
+    http_method_names = [
+        "get",
+        "post",
+        "patch",
+        "delete",
+    ]
+
 
 class RevenueViewSet(viewsets.ModelViewSet):
     queryset = Revenue.objects.all()
     serializer_class = RevenueSerializer
-    http_method_names = ['get','post','patch','delete',]
-    ordering = ('id',)
+    http_method_names = [
+        "get",
+        "post",
+        "patch",
+        "delete",
+    ]
+    ordering = ("id",)
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
@@ -53,9 +75,11 @@ class RevenueViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        return Response(
+            serializer.data, status=status.HTTP_201_CREATED, headers=headers
+        )
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         self.perform_destroy(instance)
-        return Response({"sucess":"OK"}, status=status.HTTP_200_OK)
+        return Response({"sucess": "OK"}, status=status.HTTP_200_OK)
