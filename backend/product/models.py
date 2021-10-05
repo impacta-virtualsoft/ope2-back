@@ -49,9 +49,9 @@ class Revenue(ModelBase):
 
 
 class RevenueProduct(ModelBase):
-    revenue = models.ForeignKey(Revenue, on_delete=models.CASCADE)
+    revenue = models.ForeignKey(Revenue, on_delete=models.CASCADE, related_name='revenue_product')
     product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, limit_choices_to={"type": INGREDIENT}
+        Product, on_delete=models.CASCADE, limit_choices_to={"type": INGREDIENT},
     )
     quantity = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
