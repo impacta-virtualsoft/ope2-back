@@ -10,6 +10,7 @@ from backend.product.constants import TYPE_PRODUCT
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    http_method_names = ['get', 'post', 'patch', 'delete', ]
 
 
 class ProductDetailViewSet(viewsets.ModelViewSet):
@@ -28,7 +29,7 @@ class TypeProduct(APIView):
 class UnitMeasureViewSet(viewsets.ModelViewSet):
     queryset = UnitMeasure.objects.all()
     serializer_class = UnitMeasureSerializer
-
+    http_method_names = ['get', 'post', 'patch', 'delete', ]
 
 class RevenueViewSet(viewsets.ModelViewSet):
     queryset = Revenue.objects.all()
