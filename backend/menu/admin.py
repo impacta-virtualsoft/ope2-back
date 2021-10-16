@@ -21,4 +21,3 @@ class Menu(ModelAdmin):
         RecipeMenuInLineAdmin,
         ProductMenuInLineAdmin,
     ]
-    list_display = ["weekday"]

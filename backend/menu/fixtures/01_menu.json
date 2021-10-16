@@ -1,0 +1,111 @@
+[
+{
+    "model": "menu.menu",
+    "pk": 1,
+    "fields": {
+        "created_in": "2021-10-16T20:47:04.112Z",
+        "modified_in": "2021-10-16T20:47:04.112Z",
+        "name": "Cardapio Promocional",
+        "description": "Cardápio de segunda a quarta",
+        "monday": true,
+        "tuesday": false,
+        "wednesday": true,
+        "thursday": false,
+        "friday": false,
+        "saturday": false,
+        "sunday": false,
+        "status": 1
+    }
+},
+{
+    "model": "menu.recipemenu",
+    "pk": 1,
+    "fields": {
+        "created_in": "2021-10-16T20:47:04.124Z",
+        "modified_in": "2021-10-16T20:47:04.124Z",
+        "recipe": 1,
+        "menu": 1,
+        "type": 1,
+        "price": "28.99",
+        "status": 1
+    }
+},
+{
+    "model": "menu.recipemenu",
+    "pk": 2,
+    "fields": {
+        "created_in": "2021-10-16T20:47:04.137Z",
+        "modified_in": "2021-10-16T20:47:04.137Z",
+        "recipe": 2,
+        "menu": 1,
+        "type": 3,
+        "price": "14.99",
+        "status": 1
+    }
+},
+{
+    "model": "menu.recipemenu",
+    "pk": 3,
+    "fields": {
+        "created_in": "2021-10-16T20:47:04.149Z",
+        "modified_in": "2021-10-16T20:47:04.149Z",
+        "recipe": 3,
+        "menu": 1,
+        "type": 2,
+        "price": "8.00",
+        "status": 1
+    }
+},
+{
+    "model": "menu.recipemenu",
+    "pk": 4,
+    "fields": {
+        "created_in": "2021-10-16T20:47:04.160Z",
+        "modified_in": "2021-10-16T20:47:04.161Z",
+        "recipe": 4,
+        "menu": 1,
+        "type": 0,
+        "price": "4.00",
+        "status": 1
+    }
+},
+{
+    "model": "menu.productmenu",
+    "pk": 1,
+    "fields": {
+        "created_in": "2021-10-16T20:47:04.172Z",
+        "modified_in": "2021-10-16T20:47:04.172Z",
+        "product": 3,
+        "menu": 1,
+        "type": 2,
+        "price": "3.00",
+        "status": 1
+    }
+},
+{
+    "model": "menu.productmenu",
+    "pk": 2,
+    "fields": {
+        "created_in": "2021-10-16T20:47:04.185Z",
+        "modified_in": "2021-10-16T20:47:04.185Z",
+        "product": 5,
+        "menu": 1,
+        "type": 0,
+        "price": "3.00",
+        "status": 1
+    }
+},
+{
+    "model": "menu.productmenu",
+    "pk": 3,
+    "fields": {
+        "created_in": "2021-10-16T20:47:04.196Z",
+        "modified_in": "2021-10-16T20:47:04.196Z",
+        "product": 4,
+        "menu": 1,
+        "type": 0,
+        "price": "1.50",
+        "status": 1
+    }
+}
+]

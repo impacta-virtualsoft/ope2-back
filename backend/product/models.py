@@ -18,14 +18,14 @@ class UnitMeasure(ModelBase):
 
 class Product(ModelBase):
     name = models.CharField(max_length=200)
-    description = models.CharField(max_length=500)
+    description = models.CharField(max_length=500, null=True, blank=True)
     type = models.IntegerField(
         choices=TYPE_PRODUCT, default=0, verbose_name="Tipo de Produto"
     )
     unit_measure = models.ForeignKey(UnitMeasure, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return f'{self.name} - {self.unit_measure.__str__()}'
 
     class Meta:
         verbose_name_plural = "Produtos"
@@ -37,10 +37,10 @@ class Product(ModelBase):
 
 class Recipe(ModelBase):
     name = models.CharField(max_length=200)
-    description = models.CharField(max_length=500)
+    description = models.CharField(max_length=500, null=True, blank=True)
 
     def __str__(self):
-        return self.description
+        return self.name
 
     class Meta:
         verbose_name_plural = "Receitas"
@@ -59,7 +59,7 @@ class RecipeProduct(ModelBase):
         on_delete=models.CASCADE,
         limit_choices_to={"type": INGREDIENT},
     )
-    quantity = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    quantity = models.DecimalField(max_digits=12, decimal_places=4, default=0)
 
     def __str__(self):
         return self.recipe.name

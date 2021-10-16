@@ -1,0 +1,394 @@
+[{
+    "model": "product.unitmeasure",
+    "pk": 1,
+    "fields": {
+        "created_in": "2021-10-16T18:22:45.613Z",
+        "modified_in": "2021-10-16T18:22:45.613Z",
+        "name": "Unidade",
+        "short_name": "UN"
+    }
+},
+{
+    "model": "product.unitmeasure",
+    "pk": 2,
+    "fields": {
+        "created_in": "2021-10-16T20:35:54.329Z",
+        "modified_in": "2021-10-16T20:35:54.329Z",
+        "name": "Litros",
+        "short_name": "LT"
+    }
+},
+{
+    "model": "product.unitmeasure",
+    "pk": 3,
+    "fields": {
+        "created_in": "2021-10-16T20:36:40.885Z",
+        "modified_in": "2021-10-16T20:36:47.348Z",
+        "name": "Kilogramas",
+        "short_name": "KG"
+    }
+},
+{
+    "model": "product.product",
+    "pk": 1,
+    "fields": {
+        "created_in": "2021-10-16T18:23:11.508Z",
+        "modified_in": "2021-10-16T18:23:11.508Z",
+        "name": "Pão Australiano",
+        "description": "Pão da Padaria do seu zezinho",
+        "type": 1,
+        "unit_measure": 1
+    }
+},
+{
+    "model": "product.product",
+    "pk": 2,
+    "fields": {
+        "created_in": "2021-10-16T18:23:36.020Z",
+        "modified_in": "2021-10-16T18:23:36.020Z",
+        "name": "Hamburguer Picanha 250g",
+        "description": "Picanha matturata",
+        "type": 1,
+        "unit_measure": 1
+    }
+},
+{
+    "model": "product.product",
+    "pk": 3,
+    "fields": {
+        "created_in": "2021-10-16T18:23:46.729Z",
+        "modified_in": "2021-10-16T18:23:46.729Z",
+        "name": "Cheddar",
+        "description": "Queijo Cheddar",
+        "type": 1,
+        "unit_measure": 1
+    }
+},
+{
+    "model": "product.product",
+    "pk": 4,
+    "fields": {
+        "created_in": "2021-10-16T18:25:22.533Z",
+        "modified_in": "2021-10-16T18:25:22.533Z",
+        "name": "Alface",
+        "description": null,
+        "type": 1,
+        "unit_measure": 1
+    }
+},
+{
+    "model": "product.product",
+    "pk": 5,
+    "fields": {
+        "created_in": "2021-10-16T18:25:43.103Z",
+        "modified_in": "2021-10-16T18:25:43.103Z",
+        "name": "Bacon Fatia",
+        "description": null,
+        "type": 1,
+        "unit_measure": 1
+    }
+},
+{
+    "model": "product.product",
+    "pk": 6,
+    "fields": {
+        "created_in": "2021-10-16T20:35:02.403Z",
+        "modified_in": "2021-10-16T20:35:02.403Z",
+        "name": "Coca Cola 350ML",
+        "description": null,
+        "type": 0,
+        "unit_measure": 1
+    }
+},
+{
+    "model": "product.product",
+    "pk": 7,
+    "fields": {
+        "created_in": "2021-10-16T20:35:19.479Z",
+        "modified_in": "2021-10-16T20:35:19.479Z",
+        "name": "Leite Condensado",
+        "description": null,
+        "type": 1,
+        "unit_measure": 1
+    }
+},
+{
+    "model": "product.product",
+    "pk": 8,
+    "fields": {
+        "created_in": "2021-10-16T20:35:59.221Z",
+        "modified_in": "2021-10-16T20:35:59.221Z",
+        "name": "Leite",
+        "description": null,
+        "type": 1,
+        "unit_measure": 2
+    }
+},
+{
+    "model": "product.product",
+    "pk": 9,
+    "fields": {
+        "created_in": "2021-10-16T20:36:08.440Z",
+        "modified_in": "2021-10-16T20:36:08.441Z",
+        "name": "Ovo",
+        "description": null,
+        "type": 1,
+        "unit_measure": 1
+    }
+},
+{
+    "model": "product.product",
+    "pk": 10,
+    "fields": {
+        "created_in": "2021-10-16T20:36:48.684Z",
+        "modified_in": "2021-10-16T20:36:48.684Z",
+        "name": "Açucar",
+        "description": null,
+        "type": 1,
+        "unit_measure": 3
+    }
+},
+{
+    "model": "product.product",
+    "pk": 11,
+    "fields": {
+        "created_in": "2021-10-16T20:37:26.860Z",
+        "modified_in": "2021-10-16T20:37:33.267Z",
+        "name": "Água Mineral 20LT",
+        "description": null,
+        "type": 1,
+        "unit_measure": 2
+    }
+},
+{
+    "model": "product.product",
+    "pk": 12,
+    "fields": {
+        "created_in": "2021-10-16T20:38:24.824Z",
+        "modified_in": "2021-10-16T20:38:24.824Z",
+        "name": "Batata",
+        "description": null,
+        "type": 1,
+        "unit_measure": 3
+    }
+},
+{
+    "model": "product.product",
+    "pk": 13,
+    "fields": {
+        "created_in": "2021-10-16T20:38:43.320Z",
+        "modified_in": "2021-10-16T20:38:43.320Z",
+        "name": "Bacon Cubos",
+        "description": null,
+        "type": 1,
+        "unit_measure": 3
+    }
+},
+{
+    "model": "product.product",
+    "pk": 14,
+    "fields": {
+        "created_in": "2021-10-16T20:39:00.219Z",
+        "modified_in": "2021-10-16T20:39:00.219Z",
+        "name": "Oléo 500ML",
+        "description": null,
+        "type": 1,
+        "unit_measure": 2
+    }
+},
+{
+    "model": "product.product",
+    "pk": 15,
+    "fields": {
+        "created_in": "2021-10-16T20:44:32.506Z",
+        "modified_in": "2021-10-16T20:44:32.506Z",
+        "name": "Laranja",
+        "description": null,
+        "type": 1,
+        "unit_measure": 1
+    }
+},
+{
+    "model": "product.recipe",
+    "pk": 1,
+    "fields": {
+        "created_in": "2021-10-16T18:26:28.427Z",
+        "modified_in": "2021-10-16T18:26:28.427Z",
+        "name": "Zeus",
+        "description": "Lanche feito com muuito cheddar e bacon"
+    }
+},
+{
+    "model": "product.recipe",
+    "pk": 2,
+    "fields": {
+        "created_in": "2021-10-16T20:40:06.132Z",
+        "modified_in": "2021-10-16T20:40:06.132Z",
+        "name": "Fritas com Cheddar e Bacon",
+        "description": "Batata Frita com cheddar e bacon em cubos"
+    }
+},
+{
+    "model": "product.recipe",
+    "pk": 3,
+    "fields": {
+        "created_in": "2021-10-16T20:42:37.399Z",
+        "modified_in": "2021-10-16T20:44:05.315Z",
+        "name": "Mini pudim",
+        "description": null
+    }
+},
+{
+    "model": "product.recipe",
+    "pk": 4,
+    "fields": {
+        "created_in": "2021-10-16T20:44:59.701Z",
+        "modified_in": "2021-10-16T20:44:59.701Z",
+        "name": "Suco de Laranja 300 ML",
+        "description": "Laranja natural"
+    }
+},
+{
+    "model": "product.recipeproduct",
+    "pk": 1,
+    "fields": {
+        "created_in": "2021-10-16T18:26:28.439Z",
+        "modified_in": "2021-10-16T18:26:28.439Z",
+        "recipe": 1,
+        "product": 1,
+        "quantity": "1.0000"
+    }
+},
+{
+    "model": "product.recipeproduct",
+    "pk": 2,
+    "fields": {
+        "created_in": "2021-10-16T18:26:28.452Z",
+        "modified_in": "2021-10-16T18:26:28.452Z",
+        "recipe": 1,
+        "product": 2,
+        "quantity": "1.0000"
+    }
+},
+{
+    "model": "product.recipeproduct",
+    "pk": 3,
+    "fields": {
+        "created_in": "2021-10-16T18:26:28.464Z",
+        "modified_in": "2021-10-16T18:26:28.464Z",
+        "recipe": 1,
+        "product": 3,
+        "quantity": "4.0000"
+    }
+},
+{
+    "model": "product.recipeproduct",
+    "pk": 4,
+    "fields": {
+        "created_in": "2021-10-16T18:26:28.476Z",
+        "modified_in": "2021-10-16T18:26:28.476Z",
+        "recipe": 1,
+        "product": 5,
+        "quantity": "4.0000"
+    }
+},
+{
+    "model": "product.recipeproduct",
+    "pk": 5,
+    "fields": {
+        "created_in": "2021-10-16T20:40:06.144Z",
+        "modified_in": "2021-10-16T20:40:06.144Z",
+        "recipe": 2,
+        "product": 12,
+        "quantity": "0.3000"
+    }
+},
+{
+    "model": "product.recipeproduct",
+    "pk": 6,
+    "fields": {
+        "created_in": "2021-10-16T20:40:06.156Z",
+        "modified_in": "2021-10-16T20:40:06.156Z",
+        "recipe": 2,
+        "product": 13,
+        "quantity": "0.2000"
+    }
+},
+{
+    "model": "product.recipeproduct",
+    "pk": 7,
+    "fields": {
+        "created_in": "2021-10-16T20:40:06.167Z",
+        "modified_in": "2021-10-16T20:40:06.167Z",
+        "recipe": 2,
+        "product": 3,
+        "quantity": "4.0000"
+    }
+},
+{
+    "model": "product.recipeproduct",
+    "pk": 8,
+    "fields": {
+        "created_in": "2021-10-16T20:42:37.413Z",
+        "modified_in": "2021-10-16T20:42:37.413Z",
+        "recipe": 3,
+        "product": 7,
+        "quantity": "0.2000"
+    }
+},
+{
+    "model": "product.recipeproduct",
+    "pk": 9,
+    "fields": {
+        "created_in": "2021-10-16T20:42:37.426Z",
+        "modified_in": "2021-10-16T20:42:37.426Z",
+        "recipe": 3,
+        "product": 9,
+        "quantity": "0.6000"
+    }
+},
+{
+    "model": "product.recipeproduct",
+    "pk": 10,
+    "fields": {
+        "created_in": "2021-10-16T20:42:37.439Z",
+        "modified_in": "2021-10-16T20:42:37.439Z",
+        "recipe": 3,
+        "product": 8,
+        "quantity": "0.0400"
+    }
+},
+{
+    "model": "product.recipeproduct",
+    "pk": 11,
+    "fields": {
+        "created_in": "2021-10-16T20:42:37.452Z",
+        "modified_in": "2021-10-16T20:44:05.327Z",
+        "recipe": 3,
+        "product": 10,
+        "quantity": "0.0400"
+    }
+},
+{
+    "model": "product.recipeproduct",
+    "pk": 12,
+    "fields": {
+        "created_in": "2021-10-16T20:42:37.464Z",
+        "modified_in": "2021-10-16T20:44:05.339Z",
+        "recipe": 3,
+        "product": 11,
+        "quantity": "0.0250"
+    }
+},
+{
+    "model": "product.recipeproduct",
+    "pk": 13,
+    "fields": {
+        "created_in": "2021-10-16T20:44:59.712Z",
+        "modified_in": "2021-10-16T20:44:59.712Z",
+        "recipe": 4,
+        "product": 15,
+        "quantity": "4.0000"
+    }
+}
+]

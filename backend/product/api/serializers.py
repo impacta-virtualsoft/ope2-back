@@ -23,7 +23,7 @@ class UnitMeasureSerializer(serializers.ModelSerializer):
 
 
 class ProductDetailsSerializer(serializers.ModelSerializer):
-    unit_measure = UnitMeasureSerializer(many=False)
+    unit_measure = UnitMeasureSerializer(many=False, read_only=True)
     type = serializers.ChoiceField(choices=TYPE_PRODUCT)
 
     class Meta:
@@ -39,6 +39,8 @@ class ProductDetailsSerializer(serializers.ModelSerializer):
 
 
 class RecipeProductSerializer(serializers.ModelSerializer):
+    quantity = serializers.DecimalField(max_digits=10, decimal_places=2)
+    # product = serializers.IntegerField()
     class Meta:
         model = RecipeProduct
         fields = ["product", "quantity"]
@@ -51,6 +53,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         model = Recipe
         fields = [
             "id",
+            "name",
             "description",
             "recipe_product",
         ]

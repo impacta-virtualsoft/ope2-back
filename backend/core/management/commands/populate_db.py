@@ -33,9 +33,39 @@ class Command(BaseCommand):
 
         app_name = kwargs["app_name"] if "app_name" in kwargs else None
 
+        # product
+        if app_name is None or app_name == "product":
+            self.stdout.write(self.style.HTTP_NOT_MODIFIED("\nprocesssando app: product"))
+
+            diretorio_fixtures = "backend/product/fixtures/"
+            fixtures = sorted(os.listdir(diretorio_fixtures))
+
+            for fixture in fixtures:
+                if fixture != "data.json":
+                    self.stdout.write(self.style.SQL_KEYWORD("\nmodel: " + fixture))
+                    management.call_command("loaddata", diretorio_fixtures + fixture)
+
+            self.stdout.write(self.style.SUCCESS("\nimportado com sucesso\n"))
+
+
+
+        # menu
+        if app_name is None or app_name == "menu":
+            self.stdout.write(self.style.HTTP_NOT_MODIFIED("\nprocesssando app: menu"))
+
+            diretorio_fixtures = "backend/menu/fixtures/"
+            fixtures = sorted(os.listdir(diretorio_fixtures))
+
+            for fixture in fixtures:
+                if fixture != "data.json":
+                    self.stdout.write(self.style.SQL_KEYWORD("\nmodel: " + fixture))
+                    management.call_command("loaddata", diretorio_fixtures + fixture)
+
+            self.stdout.write(self.style.SUCCESS("\nimportado com sucesso\n"))
+
         # groups
         if app_name is None or app_name == "users":
-            self.stdout.write(self.style.HTTP_NOT_MODIFIED("\nprocesssando app: users"))
+            self.stdout.write(self.style.HTTP_NOT_MODIFIED("\nprocesssando app: groups"))
 
             diretorio_fixtures = "backend/users/fixtures/groups/"
             fixtures = sorted(os.listdir(diretorio_fixtures))

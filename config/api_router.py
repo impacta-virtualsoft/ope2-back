@@ -8,6 +8,7 @@ from backend.product.api.views import (
     RecipeViewSet,
     UnitMeasureViewSet,
 )
+from backend.menu.api.views import MenuViewSet
 from backend.users.api.views import UserViewSet
 
 if settings.DEBUG:
@@ -21,7 +22,8 @@ router.register("product", ProductViewSet)
 router.register("product/detail", ProductDetailViewSet)
 router.register("recipe", RecipeViewSet)
 router.register("client", ClientViewSet)
-router.register("provider", ProductViewSet)
+router.register("provider", ProviderViewSet)
+router.register("menu", MenuViewSet)
 
 app_name = "api"
 urlpatterns = router.urls

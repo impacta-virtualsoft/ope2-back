@@ -7,14 +7,19 @@ from backend.product.models import Product, Recipe
 
 
 class Menu(ModelBase):
-    description = models.CharField(max_length=200)
-    weekday = models.IntegerField(
-        choices=WEEK_DAY, default=0, verbose_name="Dia da Semana"
-    )
+    name = models.CharField(max_length=200)
+    description = models.CharField(max_length=500)
+    monday = models.BooleanField(default=False, verbose_name="Segunda-Feira")
+    tuesday = models.BooleanField(default=False, verbose_name="Terça-Feira")
+    wednesday = models.BooleanField(default=False, verbose_name="Quarta-Feira")
+    thursday = models.BooleanField(default=False, verbose_name="Quinta-Feira")
+    friday = models.BooleanField(default=False, verbose_name="Sexta-Feira")
+    saturday = models.BooleanField(default=False, verbose_name="Sábado")
+    sunday = models.BooleanField(default=False, verbose_name="Domingo")
     status = models.IntegerField(choices=((0, "Inativo"), (1, "Ativo")), default=1)
 
     def __str__(self):
-        return self.description
+        return self.name
 
     class Meta:
         verbose_name_plural = "Cardápio"
@@ -68,12 +73,12 @@ class RecipeMenu(ModelBase):
         Recipe, on_delete=models.CASCADE, verbose_name="Receitas"
     )
     menu = models.ForeignKey(
-        Menu, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Cardápio"
+        Menu, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Cardápio", related_name="recipe_menu"
     )
     type = models.IntegerField(
-        choices=TYPE_REVENUE_MENU, default=0, verbose_name="Tipo de Receita"
+        choices=TYPE_REVENUE_MENU, default=1, verbose_name="Tipo de Receita"
     )
-    value = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
     status = models.IntegerField(choices=((0, "Inativo"), (1, "Ativo")), default=1)
 
     def __str__(self):
@@ -89,12 +94,12 @@ class ProductMenu(ModelBase):
         Product, on_delete=models.CASCADE, verbose_name="Produtos"
     )
     menu = models.ForeignKey(
-        Menu, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Cardápio"
+        Menu, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Cardápio", related_name="product_menu"
     )
     type = models.IntegerField(
         choices=TYPE_PRODUCT_MENU, default=0, verbose_name="Tipo de Produto"
     )
-    value = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
     status = models.IntegerField(choices=((0, "Inativo"), (1, "Ativo")), default=1)
 
     def __str__(self):

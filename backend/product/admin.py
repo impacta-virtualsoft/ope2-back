@@ -19,7 +19,7 @@ class RecipeAdmin(ModelAdmin):
     inlines = [
         RecipeProductInLineAdmin,
     ]
-    list_display = ["description"]
+    list_display = ["name"]
 
 
 @register(UnitMeasure)

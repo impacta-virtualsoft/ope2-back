@@ -1,4 +1,5 @@
 from rest_framework import filters, mixins, status, viewsets
+from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -31,9 +32,10 @@ class ProductDetailViewSet(viewsets.ModelViewSet):
 
 class TypeProduct(APIView):
     def get(self, request, *args, **kwargs):
-        type_product = {}
+        type_product = []
         for a, b in TYPE_PRODUCT:
-            type_product[a] = b
+            dict_product = {"id": a, "name": b}
+            type_product.append(dict_product)
         return Response(type_product, status=status.HTTP_200_OK)
 
 
@@ -72,7 +74,21 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        if serializer.is_valid(raise_exception=False) == False:
+            dict_product = []
+            dict_quantity = []
+            for p in serializer.data['recipe_product']:
+                dict_product.append(p['product'])
+                dict_quantity.append(p['quantity'])
+            products = Product.objects.filter(id__in=dict_product, type=0)
+            if products:
+                for p in products:
+                    products_invalid = []
+                    products_invalid.append({"id": p.id})
+                dict_response = {"error": "Produto não é do tipo Ingrediente","product": products_invalid}
+                return Response(
+                    dict_response, status=status.HTTP_400_BAD_REQUEST,
+                )
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(

@@ -22,15 +22,17 @@ class GroupSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    # groups = GroupSerializer(many=True)
+    groups = serializers.IntegerField
     class Meta:
         model = User
-        fields = ["id", "email", "password", "groups"]
+        fields = ["id", "first_name", "last_name", "email", "password", "groups"]
 
     def create(self, validated_data):
         create = {
             "email": validated_data["email"],
             "password": validated_data["password"],
+            "first_name": validated_data["first_name"],
+            "last_name": validated_data["last_name"],
             "is_staff": True,
         }
         user = User.objects.create(**create)

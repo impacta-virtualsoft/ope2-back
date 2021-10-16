@@ -10,8 +10,8 @@ class User(AbstractUser):
     #: First and last name do not cover name patterns around the globe
     email = models.EmailField(_("Email"), unique=True)
     name = models.CharField(_("Name of User"), blank=True, max_length=255)
-    first_name = None  # type: ignore
-    last_name = None  # type: ignore
+    first_name = models.CharField(max_length=200)  # type: ignore
+    last_name = models.CharField(max_length=200)  # type: ignore
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]
