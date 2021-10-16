@@ -5,11 +5,11 @@ from backend.product.constants import INGREDIENT, TYPE_PRODUCT
 
 
 class UnitMeasure(ModelBase):
-    description = models.CharField(max_length=200)
-    short_description = models.CharField(max_length=2)
+    name = models.CharField(max_length=200)
+    short_name = models.CharField(max_length=2)
 
     def __str__(self):
-        return self.short_description
+        return self.short_name
 
     class Meta:
         verbose_name_plural = "Unidades de Medida"
@@ -17,14 +17,15 @@ class UnitMeasure(ModelBase):
 
 
 class Product(ModelBase):
-    description = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
+    description = models.CharField(max_length=500)
     type = models.IntegerField(
         choices=TYPE_PRODUCT, default=0, verbose_name="Tipo de Produto"
     )
     unit_measure = models.ForeignKey(UnitMeasure, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.description
+        return self.name
 
     class Meta:
         verbose_name_plural = "Produtos"
@@ -34,8 +35,9 @@ class Product(ModelBase):
         ]
 
 
-class Revenue(ModelBase):
-    description = models.CharField(max_length=200)
+class Recipe(ModelBase):
+    name = models.CharField(max_length=200)
+    description = models.CharField(max_length=500)
 
     def __str__(self):
         return self.description
@@ -44,13 +46,13 @@ class Revenue(ModelBase):
         verbose_name_plural = "Receitas"
         verbose_name = "Receita"
         ordering = [
-            "description",
+            "name",
         ]
 
 
-class RevenueProduct(ModelBase):
-    revenue = models.ForeignKey(
-        Revenue, on_delete=models.CASCADE, related_name="revenue_product"
+class RecipeProduct(ModelBase):
+    recipe = models.ForeignKey(
+        Recipe, on_delete=models.CASCADE, related_name="recipe_product"
     )
     product = models.ForeignKey(
         Product,
@@ -60,7 +62,7 @@ class RevenueProduct(ModelBase):
     quantity = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     def __str__(self):
-        return self.revenue.description
+        return self.recipe.name
 
     class Meta:
         verbose_name_plural = "Produtos da Receita"

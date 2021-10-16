@@ -5,7 +5,7 @@ from backend.core.api.views import ClientViewSet, ProviderViewSet
 from backend.product.api.views import (
     ProductDetailViewSet,
     ProductViewSet,
-    RevenueViewSet,
+    RecipeViewSet,
     UnitMeasureViewSet,
 )
 from backend.users.api.views import UserViewSet
@@ -19,7 +19,7 @@ router.register("users", UserViewSet)
 router.register("unitmeasure", UnitMeasureViewSet)
 router.register("product", ProductViewSet)
 router.register("product/detail", ProductDetailViewSet)
-router.register("revenue", RevenueViewSet)
+router.register("recipe", RecipeViewSet)
 router.register("client", ClientViewSet)
 router.register("provider", ProductViewSet)
 

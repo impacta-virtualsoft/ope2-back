@@ -3,7 +3,7 @@ from rest_framework import serializers, status
 from rest_framework.response import Response
 
 from backend.product.constants import INGREDIENT, TYPE_PRODUCT
-from backend.product.models import Product, Revenue, RevenueProduct, UnitMeasure
+from backend.product.models import Product, Recipe, RecipeProduct, UnitMeasure
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -17,8 +17,8 @@ class UnitMeasureSerializer(serializers.ModelSerializer):
         model = UnitMeasure
         fields = [
             "id",
-            "description",
-            "short_description",
+            "name",
+            "short_name",
         ]
 
 
@@ -31,77 +31,78 @@ class ProductDetailsSerializer(serializers.ModelSerializer):
         model = Product
         fields = [
             "id",
+            "name",
             "description",
             "type",
             "unit_measure",
         ]
 
 
-class RevenueProductSerializer(serializers.ModelSerializer):
+class RecipeProductSerializer(serializers.ModelSerializer):
     class Meta:
-        model = RevenueProduct
+        model = RecipeProduct
         fields = ["product", "quantity"]
 
 
-class RevenueSerializer(serializers.ModelSerializer):
-    revenue_product = RevenueProductSerializer(many=True)
+class RecipeSerializer(serializers.ModelSerializer):
+    recipe_product = RecipeProductSerializer(many=True)
 
     class Meta:
-        model = Revenue
+        model = Recipe
         fields = [
             "id",
             "description",
-            "revenue_product",
+            "recipe_product",
         ]
 
     def create(self, validated_data):
-        revenue_products = validated_data.pop("revenue_product")
-        revenue = Revenue.objects.create(**validated_data)
+        recipe_products = validated_data.pop("recipe_product")
+        recipe = Recipe.objects.create(**validated_data)
 
-        for revenue_product in revenue_products:
+        for recipe_product in recipe_products:
             try:
-                product = Product.objects.filter(id=revenue_product["product"].id)[0]
+                product = Product.objects.filter(id=recipe_product["product"].id)[0]
             except IndexError:
                 print(123)
 
-            revenue_dict = {
-                "revenue": revenue,
+            recipe_dict = {
+                "recipe": recipe,
                 "product": product,
-                "quantity": revenue_product["quantity"],
+                "quantity": recipe_product["quantity"],
             }
 
-            RevenueProduct.objects.create(**revenue_dict)
+            RecipeProduct.objects.create(**recipe_dict)
 
-        validated_data["revenue_product"] = revenue_products
-        validated_data["id"] = revenue.id
+        validated_data["recipe_product"] = recipe_products
+        validated_data["id"] = recipe.id
 
         return validated_data
 
     def update(self, instance, validated_data):
-        revenue_products = validated_data.get(
-            "revenue_product", instance.revenue_product
+        recipe_products = validated_data.get(
+            "recipe_product", instance.recipe_product
         )
-        if revenue_products != instance.revenue_product:
-            RevenueProduct.objects.filter(revenue=instance).delete()
-            for revenue_product in revenue_products:
-                product = Product.objects.filter(id=revenue_product["product"].id)[0]
-                revenue_dict = {
-                    "revenue": instance,
+        if recipe_products != instance.recipe_product:
+            RecipeProduct.objects.filter(recipe=instance).delete()
+            for recipe_product in recipe_products:
+                product = Product.objects.filter(id=recipe_product["product"].id)[0]
+                recipe_dict = {
+                    "recipe": instance,
                     "product": product,
-                    "quantity": revenue_product["quantity"],
+                    "quantity": recipe_product["quantity"],
                 }
 
-                RevenueProduct.objects.create(**revenue_dict)
+                RecipeProduct.objects.create(**recipe_dict)
         instance.description = validated_data.get("description", instance.description)
         instance.save()
 
         return instance
 
 
-# class RevenueProductDetailSerializer(serializers.ModelSerializer):
-#     # revenue = RevenueSerializer(many=False)
+# class RecipeProductDetailSerializer(serializers.ModelSerializer):
+#     # recipe = RecipeSerializer(many=False)
 #     # product = ProductDetailsSerializer(many=True)
 #
 #     class Meta:
-#         model = RevenueProduct
+#         model = RecipeProduct
 #         fields = "__all__"

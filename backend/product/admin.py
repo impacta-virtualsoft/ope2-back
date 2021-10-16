@@ -1,6 +1,6 @@
 from django.contrib.admin import ModelAdmin, StackedInline, register
 
-from backend.product.models import Product, Revenue, RevenueProduct, UnitMeasure
+from backend.product.models import Product, Recipe, RecipeProduct, UnitMeasure
 
 
 @register(Product)
@@ -8,16 +8,16 @@ class ProductAdmin(ModelAdmin):
     ...
 
 
-class RevenueProductInLineAdmin(StackedInline):
-    model = RevenueProduct
+class RecipeProductInLineAdmin(StackedInline):
+    model = RecipeProduct
     extra = 0
     suit_classes = "suit-tab suit-tab-produtos"
 
 
-@register(Revenue)
-class RevenueAdmin(ModelAdmin):
+@register(Recipe)
+class RecipeAdmin(ModelAdmin):
     inlines = [
-        RevenueProductInLineAdmin,
+        RecipeProductInLineAdmin,
     ]
     list_display = ["description"]
 

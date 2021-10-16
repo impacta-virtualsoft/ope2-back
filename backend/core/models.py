@@ -40,4 +40,4 @@ class Provider(ModelBase):
         verbose_name = "Fornecedor"
 
     def __str__(self):
-        return self.name
+        return self.corporate_name
