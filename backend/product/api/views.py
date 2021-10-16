@@ -5,11 +5,11 @@ from rest_framework.views import APIView
 from backend.product.api.serializers import (
     ProductDetailsSerializer,
     ProductSerializer,
-    RevenueSerializer,
+    RecipeSerializer,
     UnitMeasureSerializer,
 )
 from backend.product.constants import TYPE_PRODUCT
-from backend.product.models import Product, Revenue, UnitMeasure
+from backend.product.models import Product, Recipe, UnitMeasure
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -48,9 +48,9 @@ class UnitMeasureViewSet(viewsets.ModelViewSet):
     ]
 
 
-class RevenueViewSet(viewsets.ModelViewSet):
-    queryset = Revenue.objects.all()
-    serializer_class = RevenueSerializer
+class RecipeViewSet(viewsets.ModelViewSet):
+    queryset = Recipe.objects.all()
+    serializer_class = RecipeSerializer
     http_method_names = [
         "get",
         "post",

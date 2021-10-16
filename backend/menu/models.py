@@ -3,7 +3,7 @@ from django.db import models
 from backend.core.models import ModelBase
 from backend.menu.constants import TYPE_PRODUCT_MENU, TYPE_REVENUE_MENU, WEEK_DAY
 from backend.product.constants import TYPE_PRODUCT
-from backend.product.models import Product, Revenue
+from backend.product.models import Product, Recipe
 
 
 class Menu(ModelBase):
@@ -25,8 +25,8 @@ class Menu(ModelBase):
 #     product = models.ForeignKey(
 #         Product, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Produto"
 #     )
-#     revenue = models.ForeignKey(
-#         Revenue, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Receita"
+#     recipe = models.ForeignKey(
+#         Recipe, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Receita"
 #     )
 #     type = models.IntegerField(
 #         choices=MENU_TYPE, default=0, verbose_name="Tipo do Produto"
@@ -34,7 +34,7 @@ class Menu(ModelBase):
 #
 #     def __str__(self):
 #         if self.product is None:
-#             return self.revenue.description
+#             return self.recipe.description
 #         else:
 #
 #             return self.product.description
@@ -63,9 +63,9 @@ class Menu(ModelBase):
 
 
 # DRINK, LUNCH, DESSERT, PORTION, ADDITIONAL
-class RevenueMenu(ModelBase):
-    revenue = models.ForeignKey(
-        Revenue, on_delete=models.CASCADE, verbose_name="Receitas"
+class RecipeMenu(ModelBase):
+    recipe = models.ForeignKey(
+        Recipe, on_delete=models.CASCADE, verbose_name="Receitas"
     )
     menu = models.ForeignKey(
         Menu, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Cardápio"
@@ -77,7 +77,7 @@ class RevenueMenu(ModelBase):
     status = models.IntegerField(choices=((0, "Inativo"), (1, "Ativo")), default=1)
 
     def __str__(self):
-        return self.revenue.__str__()
+        return self.recipe.__str__()
 
     class Meta:
         verbose_name_plural = "Cardapio de Receitas"

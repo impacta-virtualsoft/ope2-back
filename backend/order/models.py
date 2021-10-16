@@ -28,8 +28,8 @@ class SalesOrder(ModelBase):
 #     product_menu = models.ForeignKey(
 #         ProductMenu, on_delete=models.CASCADE, limit_choices_to={"type": TYPE_PRODUCT_MENU.ADDITIONAL}, verbose_name="Adicional"
 #     )
-#     revenue_menu = models.ForeignKey(
-#         RevenueMenu, on_delete=models.CASCADE, limit_choices_to={"type": TYPE_REVENUE_MENU.LUNCH}, verbose_name="Lanches"
+#     recipe_menu = models.ForeignKey(
+#         RecipeMenu, on_delete=models.CASCADE, limit_choices_to={"type": TYPE_REVENUE_MENU.LUNCH}, verbose_name="Lanches"
 #     )
 #
 #     def __str__(self):

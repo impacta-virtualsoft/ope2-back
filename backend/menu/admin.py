@@ -1,10 +1,10 @@
 from django.contrib.admin import ModelAdmin, StackedInline, register
 
-from .models import Menu, ProductMenu, RevenueMenu
+from .models import Menu, ProductMenu, RecipeMenu
 
 
-class RevenueMenuInLineAdmin(StackedInline):
-    model = RevenueMenu
+class RecipeMenuInLineAdmin(StackedInline):
+    model = RecipeMenu
     extra = 0
     suit_classes = "suit-tab suit-tab-produtos"
 
@@ -18,7 +18,7 @@ class ProductMenuInLineAdmin(StackedInline):
 @register(Menu)
 class Menu(ModelAdmin):
     inlines = [
-        RevenueMenuInLineAdmin,
+        RecipeMenuInLineAdmin,
         ProductMenuInLineAdmin,
     ]
     list_display = ["weekday"]
