@@ -40,6 +40,7 @@ class UserSerializer(serializers.ModelSerializer):
         user = self.Meta.model(**validated_data)
         user.set_password(password)
         user.username = validated_data['email']
+        user.is_staff = True
         user.save()
         user.groups.add(group[0])
         # user.save()
