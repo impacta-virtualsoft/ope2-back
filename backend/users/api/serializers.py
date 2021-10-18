@@ -28,16 +28,20 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ["id", "first_name", "last_name", "email", "password", "groups"]
 
     def create(self, validated_data):
-        create = {
-            "email": validated_data["email"],
-            "password": validated_data["password"],
-            "first_name": validated_data["first_name"],
-            "last_name": validated_data["last_name"],
-            "is_staff": True,
-        }
-        user = User.objects.create(**create)
-        group = validated_data["groups"][0]
-        user.groups.add(group)
+        group = validated_data.pop('groups')
+        password = validated_data.pop('password')
+        # create = {
+        #     "email": validated_data["email"],
+        #     "first_name": validated_data["first_name"],
+        #     "last_name": validated_data["last_name"],
+        #     "is_staff": True,
+        # }
+        # password = validated_data["password"],
+        user = self.Meta.model(**validated_data)
+        user.set_password(password)
+        user.username = validated_data['email']
+        user.save()
+        user.groups.add(group[0])
         # user.save()
         serializable_user = model_to_dict(user)
         msg = json.dumps(serializable_user, indent=4, sort_keys=True, default=str)
