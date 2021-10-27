@@ -1,7 +1,6 @@
 from django.db import models
 
 from backend.core.models import ModelBase
-from backend.menu.constants import TYPE_PRODUCT_MENU, TYPE_REVENUE_MENU
 from backend.product.models import Product, Recipe
 
 class TypeProductMenu(ModelBase):
