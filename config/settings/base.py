@@ -1,6 +1,7 @@
 """
 Base settings to build other settings files upon.
 """
+import os
 import datetime
 from pathlib import Path
 
@@ -286,6 +287,8 @@ SOCIALACCOUNT_ADAPTER = "backend.users.adapters.SocialAccountAdapter"
 # -------------------------------------------------------------------------------
 # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
 REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": int(os.getenv("DJANGO_PAGINATION_LIMIT", 10)),
     "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",

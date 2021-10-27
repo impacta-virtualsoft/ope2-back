@@ -1,6 +1,6 @@
 from django.contrib.admin import ModelAdmin, StackedInline, register
 
-from .models import Menu, ProductMenu, RecipeMenu
+from .models import Menu, ProductMenu, RecipeMenu, TypeRecipeMenu, TypeProductMenu
 
 
 class RecipeMenuInLineAdmin(StackedInline):
@@ -16,8 +16,18 @@ class ProductMenuInLineAdmin(StackedInline):
 
 
 @register(Menu)
-class Menu(ModelAdmin):
+class MenuAdmin(ModelAdmin):
     inlines = [
         RecipeMenuInLineAdmin,
         ProductMenuInLineAdmin,
     ]
+
+
+@register(TypeProductMenu)
+class TypeProductMenuAdmin(ModelAdmin):
+    ...
+
+
+@register(TypeRecipeMenu)
+class TypeRecipeMenuAdmin(ModelAdmin):
+    ...

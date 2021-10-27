@@ -1,5 +1,68 @@
 [
 {
+    "model": "menu.typeproductmenu",
+    "pk": 1,
+    "fields": {
+        "created_in": "2021-10-27T19:27:08.830Z",
+        "modified_in": "2021-10-27T19:27:08.830Z",
+        "name": "Doce"
+    }
+},
+{
+    "model": "menu.typeproductmenu",
+    "pk": 2,
+    "fields": {
+        "created_in": "2021-10-27T19:27:36.497Z",
+        "modified_in": "2021-10-27T19:27:36.497Z",
+        "name": "Adicional"
+    }
+},
+{
+    "model": "menu.typeproductmenu",
+    "pk": 3,
+    "fields": {
+        "created_in": "2021-10-27T19:27:41.711Z",
+        "modified_in": "2021-10-27T19:27:41.712Z",
+        "name": "Bebida"
+    }
+},
+{
+    "model": "menu.typerecipemenu",
+    "pk": 1,
+    "fields": {
+        "created_in": "2021-10-27T19:27:54.547Z",
+        "modified_in": "2021-10-27T19:27:54.547Z",
+        "name": "Lanche"
+    }
+},
+{
+    "model": "menu.typerecipemenu",
+    "pk": 2,
+    "fields": {
+        "created_in": "2021-10-27T19:27:59.729Z",
+        "modified_in": "2021-10-27T19:27:59.729Z",
+        "name": "Sobremesa"
+    }
+},
+{
+    "model": "menu.typerecipemenu",
+    "pk": 3,
+    "fields": {
+        "created_in": "2021-10-27T19:28:03.602Z",
+        "modified_in": "2021-10-27T19:28:03.602Z",
+        "name": "Porção"
+    }
+},
+{
+    "model": "menu.typerecipemenu",
+    "pk": 4,
+    "fields": {
+        "created_in": "2021-10-27T19:28:03.602Z",
+        "modified_in": "2021-10-27T19:28:03.602Z",
+        "name": "Bebida"
+    }
+},
+{
     "model": "menu.menu",
     "pk": 1,
     "fields": {
@@ -64,7 +127,7 @@
         "modified_in": "2021-10-16T20:47:04.161Z",
         "recipe": 4,
         "menu": 1,
-        "type": 0,
+        "type": 4,
         "price": "4.00",
         "status": 1
     }
@@ -90,7 +153,7 @@
         "modified_in": "2021-10-16T20:47:04.185Z",
         "product": 5,
         "menu": 1,
-        "type": 0,
+        "type": 3,
         "price": "3.00",
         "status": 1
     }
@@ -103,7 +166,7 @@
         "modified_in": "2021-10-16T20:47:04.196Z",
         "product": 4,
         "menu": 1,
-        "type": 0,
+        "type": 3,
         "price": "1.50",
         "status": 1
     }

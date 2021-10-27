@@ -2,17 +2,14 @@ from django.forms.models import model_to_dict
 from rest_framework import serializers, status
 from rest_framework.response import Response
 
-from backend.product.constants import INGREDIENT, TYPE_PRODUCT
-from backend.product.models import Product, Recipe, RecipeProduct, UnitMeasure
-
-
-class ProductSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Product
-        fields = "__all__"
+from backend.product.models import Product, Recipe, RecipeProduct, UnitMeasure, TypeProduct
+from backend.core.api.serializers import SmallResultsSetPagination
 
 
 class UnitMeasureSerializer(serializers.ModelSerializer):
+    pagination_class = SmallResultsSetPagination
+    ordering = 'id'
+
     class Meta:
         model = UnitMeasure
         fields = [
@@ -22,9 +19,31 @@ class UnitMeasureSerializer(serializers.ModelSerializer):
         ]
 
 
-class ProductDetailsSerializer(serializers.ModelSerializer):
+class TypeProductSerializer(serializers.ModelSerializer):
+    pagination_class = SmallResultsSetPagination
+    ordering = 'id'
+
+    class Meta:
+        model = TypeProduct
+        fields = [
+            "id",
+            "name",
+        ]
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    pagination_class = SmallResultsSetPagination
+    ordering = 'id'
+    class Meta:
+        model = Product
+        fields = "__all__"
+
+
+class ProductDetailSerializer(serializers.ModelSerializer):
     unit_measure = UnitMeasureSerializer(many=False, read_only=True)
-    type = serializers.ChoiceField(choices=TYPE_PRODUCT)
+    type = TypeProductSerializer(many=False, read_only=True)
+    pagination_class = SmallResultsSetPagination
+    ordering = 'id'
 
     class Meta:
         ordering = ["id"]
@@ -41,6 +60,9 @@ class ProductDetailsSerializer(serializers.ModelSerializer):
 class RecipeProductSerializer(serializers.ModelSerializer):
     quantity = serializers.DecimalField(max_digits=10, decimal_places=2)
     # product = serializers.IntegerField()
+    pagination_class = SmallResultsSetPagination
+    ordering = 'id'
+
     class Meta:
         model = RecipeProduct
         fields = ["product", "quantity"]
@@ -48,6 +70,8 @@ class RecipeProductSerializer(serializers.ModelSerializer):
 
 class RecipeSerializer(serializers.ModelSerializer):
     recipe_product = RecipeProductSerializer(many=True)
+    pagination_class = SmallResultsSetPagination
+    ordering = 'id'
 
     class Meta:
         model = Recipe
@@ -102,10 +126,28 @@ class RecipeSerializer(serializers.ModelSerializer):
         return instance
 
 
-# class RecipeProductDetailSerializer(serializers.ModelSerializer):
-#     # recipe = RecipeSerializer(many=False)
-#     # product = ProductDetailsSerializer(many=True)
-#
-#     class Meta:
-#         model = RecipeProduct
-#         fields = "__all__"
+class RecipeProductDetailSerializer(serializers.ModelSerializer):
+    product = ProductDetailSerializer(many=False)
+    quantity = serializers.DecimalField(max_digits=10, decimal_places=2)
+    # product = serializers.IntegerField()
+    pagination_class = SmallResultsSetPagination
+    ordering = 'id'
+
+    class Meta:
+        model = RecipeProduct
+        fields = ["product", "quantity"]
+
+
+class RecipeDetailSerializer(serializers.ModelSerializer):
+    recipe_product = RecipeProductDetailSerializer(many=True)
+    pagination_class = SmallResultsSetPagination
+    ordering = 'id'
+
+    class Meta:
+        model = Recipe
+        fields = [
+            "id",
+            "name",
+            "description",
+            "recipe_product",
+        ]

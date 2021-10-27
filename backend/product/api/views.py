@@ -4,13 +4,14 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from backend.product.api.serializers import (
-    ProductDetailsSerializer,
+    ProductDetailSerializer,
     ProductSerializer,
     RecipeSerializer,
     UnitMeasureSerializer,
+    TypeProductSerializer,
+    RecipeDetailSerializer
 )
-from backend.product.constants import TYPE_PRODUCT
-from backend.product.models import Product, Recipe, UnitMeasure
+from backend.product.models import Product, Recipe, UnitMeasure, TypeProduct
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -26,22 +27,24 @@ class ProductViewSet(viewsets.ModelViewSet):
 
 class ProductDetailViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
-    serializer_class = ProductDetailsSerializer
+    serializer_class = ProductDetailSerializer
     http_method_names = ["get"]
-
-
-class TypeProduct(APIView):
-    def get(self, request, *args, **kwargs):
-        type_product = []
-        for a, b in TYPE_PRODUCT:
-            dict_product = {"id": a, "name": b}
-            type_product.append(dict_product)
-        return Response(type_product, status=status.HTTP_200_OK)
 
 
 class UnitMeasureViewSet(viewsets.ModelViewSet):
     queryset = UnitMeasure.objects.all()
     serializer_class = UnitMeasureSerializer
+    http_method_names = [
+        "get",
+        "post",
+        "patch",
+        "delete",
+    ]
+
+
+class TypeProductViewSet(viewsets.ModelViewSet):
+    queryset = TypeProduct.objects.all()
+    serializer_class = TypeProductSerializer
     http_method_names = [
         "get",
         "post",
@@ -99,3 +102,12 @@ class RecipeViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         self.perform_destroy(instance)
         return Response({"sucess": "OK"}, status=status.HTTP_200_OK)
+
+
+class RecipeDetailViewSet(viewsets.ModelViewSet):
+    queryset = Recipe.objects.all()
+    serializer_class = RecipeDetailSerializer
+    http_method_names = [
+        "get",
+    ]
+    ordering = ("id",)

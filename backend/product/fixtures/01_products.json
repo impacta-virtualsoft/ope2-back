@@ -1,4 +1,23 @@
-[{
+[
+  {
+    "model": "product.typeproduct",
+    "pk": 1,
+    "fields": {
+        "created_in": "2021-10-27T18:08:00.776Z",
+        "modified_in": "2021-10-27T18:08:00.776Z",
+        "name": "Ingrediente"
+    }
+},
+  {
+    "model": "product.typeproduct",
+    "pk": 2,
+    "fields": {
+        "created_in": "2021-10-27T18:08:06.784Z",
+        "modified_in": "2021-10-27T18:08:06.784Z",
+        "name": "Revenda"
+    }
+},
+  {
     "model": "product.unitmeasure",
     "pk": 1,
     "fields": {
@@ -96,7 +115,7 @@
         "modified_in": "2021-10-16T20:35:02.403Z",
         "name": "Coca Cola 350ML",
         "description": null,
-        "type": 0,
+        "type": 2,
         "unit_measure": 1
     }
 },

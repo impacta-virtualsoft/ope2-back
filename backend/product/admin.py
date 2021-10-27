@@ -1,6 +1,11 @@
 from django.contrib.admin import ModelAdmin, StackedInline, register
 
-from backend.product.models import Product, Recipe, RecipeProduct, UnitMeasure
+from backend.product.models import Product, Recipe, RecipeProduct, UnitMeasure, TypeProduct
+
+
+@register(TypeProduct)
+class TypeProductAdmin(ModelAdmin):
+    ...
 
 
 @register(Product)

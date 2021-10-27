@@ -10,33 +10,32 @@ from django.contrib.admin.models import (
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.forms.models import model_to_dict
-from rest_framework import exceptions, serializers
+from rest_framework import exceptions, serializers, pagination
 
 from backend.users.models import User
-
+from backend.core.api.serializers import SmallResultsSetPagination
 
 class GroupSerializer(serializers.ModelSerializer):
+    pagination_class = SmallResultsSetPagination
     class Meta:
         model = Group
-        fields = "__all__"
+        fields = ["id", "name"]
 
 
 class UserSerializer(serializers.ModelSerializer):
-    groups = serializers.IntegerField
+    groups = GroupSerializer(many=True)
+    password = serializers.CharField(write_only=True)
+    pagination_class = SmallResultsSetPagination
+    ordering = 'id'
+
     class Meta:
+        ordering = "id"
         model = User
         fields = ["id", "first_name", "last_name", "email", "password", "groups"]
 
     def create(self, validated_data):
         group = validated_data.pop('groups')
         password = validated_data.pop('password')
-        # create = {
-        #     "email": validated_data["email"],
-        #     "first_name": validated_data["first_name"],
-        #     "last_name": validated_data["last_name"],
-        #     "is_staff": True,
-        # }
-        # password = validated_data["password"],
         user = self.Meta.model(**validated_data)
         user.set_password(password)
         user.username = validated_data['email']
@@ -58,3 +57,14 @@ class UserSerializer(serializers.ModelSerializer):
         )
 
         return user
+
+
+class UserDetailSerializer(serializers.ModelSerializer):
+    groups = GroupSerializer(many=True)
+    pagination_class = SmallResultsSetPagination
+    ordering = 'id'
+
+    class Meta:
+        ordering = "id"
+        model = User
+        fields = ["id", "first_name", "last_name", "email", "groups"]

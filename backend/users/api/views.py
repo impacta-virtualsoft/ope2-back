@@ -2,23 +2,8 @@ from rest_framework import permissions, status, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from backend.users.api.serializers import UserSerializer
+from backend.users.api.serializers import UserSerializer, UserDetailSerializer
 from backend.users.models import User
-
-# import coreapi
-# from rest_framework.schemas import AutoSchema
-
-
-# class UserViewSchema(AutoSchema):
-#
-#     def get_manual_fields(self, path, method):
-#         extra_fields = []
-#         if method.lower() in ['post', 'put']:
-#             extra_fields = [
-#                 coreapi.Field('username')
-#             ]
-#         manual_fields = super().get_manual_fields(path, method)
-#         return manual_fields + extra_fields
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -60,6 +45,27 @@ class UserViewSet(viewsets.ModelViewSet):
                 {"error": "Unauthorized"}, status=status.HTTP_401_UNAUTHORIZED
             )
 
+class UserDetailViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserDetailSerializer
+    ordering = ("id",)
+    http_method_names = ['get']
+
+    def list(self, request, *args, **kwargs):
+        if request.user.is_superuser or request.user.is_owner():
+            queryset = self.filter_queryset(self.get_queryset())
+
+            page = self.paginate_queryset(queryset)
+            if page is not None:
+                serializer = self.get_serializer(page, many=True)
+                return self.get_paginated_response(serializer.data)
+
+            serializer = self.get_serializer(queryset, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(
+                {"error": "Unauthorized"}, status=status.HTTP_401_UNAUTHORIZED
+            )
 
 class PermissionsUser(APIView):
     def get(self, request, *args, **kwargs):

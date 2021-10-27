@@ -1,22 +1,52 @@
 from rest_framework import serializers, status
 from rest_framework.response import Response
+
+from backend.product.api.serializers import RecipeProductDetailSerializer, ProductDetailSerializer, \
+    RecipeDetailSerializer
 from backend.product.models import Recipe, Product
-from backend.menu.models import Menu, RecipeMenu, ProductMenu
+from backend.menu.models import Menu, RecipeMenu, ProductMenu, TypeProductMenu, TypeRecipeMenu
+from backend.core.api.serializers import SmallResultsSetPagination
+
+class TypeProductMenuSerializer(serializers.ModelSerializer):
+    pagination_class = SmallResultsSetPagination
+    ordering = 'id'
+
+    class Meta:
+        model = TypeProductMenu
+        fields = ["id", "name"]
+
+
+class TypeRecipeMenuSerializer(serializers.ModelSerializer):
+    pagination_class = SmallResultsSetPagination
+    ordering = 'id'
+
+    class Meta:
+        model = TypeRecipeMenu
+        fields = ["id", "name",]
 
 
 class RecipeMenuSerializer(serializers.ModelSerializer):
+    pagination_class = SmallResultsSetPagination
+    ordering = 'id'
+
     class Meta:
         model = RecipeMenu
         fields = ["recipe", "type", "price", "status"]
 
 
 class ProductMenuSerializer(serializers.ModelSerializer):
+    pagination_class = SmallResultsSetPagination
+    ordering = 'id'
+
     class Meta:
         model = ProductMenu
         fields = ["product", "type", "price", "status"]
 
 
 class MenuSerializer(serializers.ModelSerializer):
+    pagination_class = SmallResultsSetPagination
+    ordering = 'id'
+
     recipe_menu = RecipeMenuSerializer(many=True, required=False)
     product_menu = ProductMenuSerializer(many=True, required=False)
 
@@ -77,3 +107,40 @@ class MenuSerializer(serializers.ModelSerializer):
         validated_data["id"] = menu.id
 
         return validated_data
+
+class RecipeMenuDetailSerializer(serializers.ModelSerializer):
+    recipe = RecipeDetailSerializer(many=False)
+    type = TypeRecipeMenuSerializer(many=False, read_only=True)
+    pagination_class = SmallResultsSetPagination
+    ordering = 'id'
+
+    class Meta:
+        model = RecipeMenu
+        fields = ["recipe", "type", "price", "status"]
+
+
+class ProductMenuDetailSerializer(serializers.ModelSerializer):
+    product = ProductDetailSerializer(many=False)
+    type = TypeProductMenuSerializer(many=False)
+    pagination_class = SmallResultsSetPagination
+    ordering = 'id'
+
+    class Meta:
+        model = ProductMenu
+        fields = ["product", "type", "price", "status"]
+
+
+class MenuDetailSerializer(serializers.ModelSerializer):
+    recipe_menu = RecipeMenuDetailSerializer(many=True, required=False)
+    product_menu = ProductMenuDetailSerializer(many=True, required=False)
+    pagination_class = SmallResultsSetPagination
+    ordering = 'id'
+
+    class Meta:
+        model = Menu
+        fields = [
+            "id", "name", "description",
+            "recipe_menu", "product_menu", "monday",
+            "tuesday", "wednesday", "thursday",
+            "friday", "saturday", "sunday", "status"
+        ]
