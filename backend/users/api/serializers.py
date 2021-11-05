@@ -23,7 +23,7 @@ class GroupSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    groups = GroupSerializer(many=True)
+    groups = serializers.IntegerField
     password = serializers.CharField(write_only=True)
     pagination_class = SmallResultsSetPagination
     ordering = 'id'
