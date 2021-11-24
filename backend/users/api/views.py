@@ -1,4 +1,4 @@
-from rest_framework import permissions, status, viewsets
+from rest_framework import filters, permissions, status, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -10,7 +10,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     # permission_classes = (permissions.Is)
-    ordering = ("id",)
+    filter_backends = [filters.OrderingFilter]
 
     # list(self, request), create(self, request), update(self, request, pk=None), destroy(self, request, pk=None)
     # retrieve(self, request, pk=None) "GET COM ID", partial_update(self, request, pk=None),
@@ -48,8 +48,8 @@ class UserViewSet(viewsets.ModelViewSet):
 class UserDetailViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserDetailSerializer
-    ordering = ("id",)
     http_method_names = ['get']
+    filter_backends = [filters.OrderingFilter]
 
     def list(self, request, *args, **kwargs):
         if request.user.is_superuser or request.user.is_owner():
@@ -68,6 +68,7 @@ class UserDetailViewSet(viewsets.ModelViewSet):
             )
 
 class PermissionsUser(APIView):
+    # filter_backends = [filters.OrderingFilter, SmallResultsSetPagination]
     def get(self, request, *args, **kwargs):
         groups = self.request.user.groups.first()
         dict_permission = {"user_email": self.request.user.email, "permissions": []}

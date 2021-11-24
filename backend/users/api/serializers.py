@@ -26,10 +26,8 @@ class UserSerializer(serializers.ModelSerializer):
     groups = serializers.IntegerField
     password = serializers.CharField(write_only=True)
     pagination_class = SmallResultsSetPagination
-    ordering = 'id'
 
     class Meta:
-        ordering = "id"
         model = User
         fields = ["id", "first_name", "last_name", "email", "password", "groups"]
 
@@ -62,9 +60,7 @@ class UserSerializer(serializers.ModelSerializer):
 class UserDetailSerializer(serializers.ModelSerializer):
     groups = GroupSerializer(many=True)
     pagination_class = SmallResultsSetPagination
-    ordering = 'id'
 
     class Meta:
-        ordering = "id"
         model = User
         fields = ["id", "first_name", "last_name", "email", "groups"]

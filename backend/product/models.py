@@ -65,7 +65,7 @@ class RecipeProduct(ModelBase):
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
-        limit_choices_to={"id": 1},
+        limit_choices_to={"type": 1},
     )
     quantity = models.DecimalField(max_digits=12, decimal_places=4, default=0)
 

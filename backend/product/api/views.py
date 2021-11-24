@@ -23,12 +23,14 @@ class ProductViewSet(viewsets.ModelViewSet):
         "patch",
         "delete",
     ]
+    filter_backends = [filters.OrderingFilter]
 
 
 class ProductDetailViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductDetailSerializer
     http_method_names = ["get"]
+    filter_backends = [filters.OrderingFilter]
 
 
 class UnitMeasureViewSet(viewsets.ModelViewSet):
@@ -40,6 +42,7 @@ class UnitMeasureViewSet(viewsets.ModelViewSet):
         "patch",
         "delete",
     ]
+    filter_backends = [filters.OrderingFilter]
 
 
 class TypeProductViewSet(viewsets.ModelViewSet):
@@ -47,10 +50,8 @@ class TypeProductViewSet(viewsets.ModelViewSet):
     serializer_class = TypeProductSerializer
     http_method_names = [
         "get",
-        "post",
-        "patch",
-        "delete",
     ]
+    filter_backends = [filters.OrderingFilter]
 
 
 class RecipeViewSet(viewsets.ModelViewSet):
@@ -62,7 +63,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         "patch",
         "delete",
     ]
-    ordering = ("id",)
+    filter_backends = [filters.OrderingFilter]
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
@@ -92,6 +93,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
                 return Response(
                     dict_response, status=status.HTTP_400_BAD_REQUEST,
                 )
+        serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(
@@ -104,10 +106,25 @@ class RecipeViewSet(viewsets.ModelViewSet):
         return Response({"sucess": "OK"}, status=status.HTTP_200_OK)
 
 
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
+
+
 class RecipeDetailViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     serializer_class = RecipeDetailSerializer
     http_method_names = [
         "get",
     ]
-    ordering = ("id",)
+    filter_backends = [filters.OrderingFilter]

@@ -12,9 +12,10 @@ class MenuViewSet(viewsets.ModelViewSet):
     http_method_names = [
         "get",
         "post",
-        # "patch",
+        "patch",
         "delete",
     ]
+    filter_backends = [filters.OrderingFilter]
 
 
 class TypeProductMenuViewSet(viewsets.ModelViewSet):
@@ -23,9 +24,10 @@ class TypeProductMenuViewSet(viewsets.ModelViewSet):
     http_method_names = [
         "get",
         "post",
-        # "patch",
+        "patch",
         "delete",
     ]
+    filter_backends = [filters.OrderingFilter]
 
 
 class TypeRecipeMenuViewSet(viewsets.ModelViewSet):
@@ -34,9 +36,10 @@ class TypeRecipeMenuViewSet(viewsets.ModelViewSet):
     http_method_names = [
         "get",
         "post",
-        # "patch",
+        "patch",
         "delete",
     ]
+    filter_backends = [filters.OrderingFilter]
 
 class MenuDetailViewSet(viewsets.ModelViewSet):
     queryset = Menu.objects.all()
@@ -44,3 +47,4 @@ class MenuDetailViewSet(viewsets.ModelViewSet):
     http_method_names = [
         "get",
     ]
+    filter_backends = [filters.OrderingFilter]

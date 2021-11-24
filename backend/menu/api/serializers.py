@@ -9,7 +9,6 @@ from backend.core.api.serializers import SmallResultsSetPagination
 
 class TypeProductMenuSerializer(serializers.ModelSerializer):
     pagination_class = SmallResultsSetPagination
-    ordering = 'id'
 
     class Meta:
         model = TypeProductMenu
@@ -18,7 +17,6 @@ class TypeProductMenuSerializer(serializers.ModelSerializer):
 
 class TypeRecipeMenuSerializer(serializers.ModelSerializer):
     pagination_class = SmallResultsSetPagination
-    ordering = 'id'
 
     class Meta:
         model = TypeRecipeMenu
@@ -27,7 +25,6 @@ class TypeRecipeMenuSerializer(serializers.ModelSerializer):
 
 class RecipeMenuSerializer(serializers.ModelSerializer):
     pagination_class = SmallResultsSetPagination
-    ordering = 'id'
 
     class Meta:
         model = RecipeMenu
@@ -36,7 +33,6 @@ class RecipeMenuSerializer(serializers.ModelSerializer):
 
 class ProductMenuSerializer(serializers.ModelSerializer):
     pagination_class = SmallResultsSetPagination
-    ordering = 'id'
 
     class Meta:
         model = ProductMenu
@@ -45,7 +41,6 @@ class ProductMenuSerializer(serializers.ModelSerializer):
 
 class MenuSerializer(serializers.ModelSerializer):
     pagination_class = SmallResultsSetPagination
-    ordering = 'id'
 
     recipe_menu = RecipeMenuSerializer(many=True, required=False)
     product_menu = ProductMenuSerializer(many=True, required=False)
@@ -108,11 +103,49 @@ class MenuSerializer(serializers.ModelSerializer):
 
         return validated_data
 
+
+    def update(self, instance, validated_data):
+        recipes_menu = validated_data.get(
+            "recipe_menu", instance.recipe_menu
+        )
+        products_menu = validated_data.get(
+            "product_menu", instance.product_menu
+        )
+        if recipes_menu != instance.recipe_menu:
+            RecipeMenu.objects.filter(menu=instance).delete()
+            for recipe_menu in recipes_menu:
+                recipe_dict = {
+                    "menu": instance,
+                    "recipe": recipe_menu['recipe'],
+                    "type": recipe_menu['type'],
+                    "price": recipe_menu['price'],
+                    "status": recipe_menu['status'],
+                }
+
+                RecipeMenu.objects.create(**recipe_dict)
+        if products_menu != instance.product_menu:
+            ProductMenu.objects.filter(menu=instance).delete()
+            for product_menu in products_menu:
+                recipe_dict = {
+                    "menu": instance,
+                    "product": product_menu['product'],
+                    "type": product_menu['type'],
+                    "price": product_menu['price'],
+                    "status": product_menu['status'],
+                }
+
+                ProductMenu.objects.create(**recipe_dict)
+        instance.description = validated_data.get("description", instance.description)
+        instance.name = validated_data.get("name", instance.name)
+        instance.save()
+
+        return instance
+
+
 class RecipeMenuDetailSerializer(serializers.ModelSerializer):
     recipe = RecipeDetailSerializer(many=False)
     type = TypeRecipeMenuSerializer(many=False, read_only=True)
     pagination_class = SmallResultsSetPagination
-    ordering = 'id'
 
     class Meta:
         model = RecipeMenu
@@ -123,7 +156,6 @@ class ProductMenuDetailSerializer(serializers.ModelSerializer):
     product = ProductDetailSerializer(many=False)
     type = TypeProductMenuSerializer(many=False)
     pagination_class = SmallResultsSetPagination
-    ordering = 'id'
 
     class Meta:
         model = ProductMenu
@@ -134,7 +166,6 @@ class MenuDetailSerializer(serializers.ModelSerializer):
     recipe_menu = RecipeMenuDetailSerializer(many=True, required=False)
     product_menu = ProductMenuDetailSerializer(many=True, required=False)
     pagination_class = SmallResultsSetPagination
-    ordering = 'id'
 
     class Meta:
         model = Menu
