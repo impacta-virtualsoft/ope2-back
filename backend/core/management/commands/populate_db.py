@@ -63,6 +63,20 @@ class Command(BaseCommand):
 
             self.stdout.write(self.style.SUCCESS("\nimportado com sucesso\n"))
 
+        # order
+        if app_name is None or app_name == "order":
+            self.stdout.write(self.style.HTTP_NOT_MODIFIED("\nprocesssando app: menu"))
+
+            diretorio_fixtures = "backend/order/fixtures/"
+            fixtures = sorted(os.listdir(diretorio_fixtures))
+
+            for fixture in fixtures:
+                if fixture != "data.json":
+                    self.stdout.write(self.style.SQL_KEYWORD("\nmodel: " + fixture))
+                    management.call_command("loaddata", diretorio_fixtures + fixture)
+
+            self.stdout.write(self.style.SUCCESS("\nimportado com sucesso\n"))
+
         # groups
         if app_name is None or app_name == "users":
             self.stdout.write(self.style.HTTP_NOT_MODIFIED("\nprocesssando app: groups"))

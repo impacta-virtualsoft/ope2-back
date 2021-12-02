@@ -75,16 +75,16 @@ class PermissionsUser(APIView):
         for permission in groups.permissions.all():
             authorization = permission.codename.split("_")
             try:
-                if dict_permission["permissions"][-1].get(authorization[1]):
-                    dict_permission["permissions"][-1][authorization[1]].append(
+                if dict_permission["permissions"][-1].get("area") == authorization[1]:
+                    dict_permission["permissions"][-1]["actions"].append(
                         authorization[0]
                     )
                 else:
                     dict_permission["permissions"].append(
-                        {authorization[1]: [authorization[0]]}
+                        {"area":authorization[1], "actions":[authorization[0]]}
                     )
             except IndexError:
                 dict_permission["permissions"].append(
-                    {authorization[1]: [authorization[0]]}
+                    {"area":authorization[1], "actions":[authorization[0]]}
                 )
         return Response(dict_permission)

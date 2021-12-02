@@ -1,4 +1,4 @@
-from rest_framework import serializers, status
+from rest_framework import serializers, status, fields
 from rest_framework.response import Response
 
 from backend.product.api.serializers import RecipeProductDetailSerializer, ProductDetailSerializer, \
@@ -28,7 +28,7 @@ class RecipeMenuSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = RecipeMenu
-        fields = ["recipe", "type", "price", "status"]
+        fields = ["id", "recipe", "type", "price", "status"]
 
 
 class ProductMenuSerializer(serializers.ModelSerializer):
@@ -36,7 +36,7 @@ class ProductMenuSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProductMenu
-        fields = ["product", "type", "price", "status"]
+        fields = ["id", "product", "type", "price", "status"]
 
 
 class MenuSerializer(serializers.ModelSerializer):
@@ -143,23 +143,21 @@ class MenuSerializer(serializers.ModelSerializer):
 
 
 class RecipeMenuDetailSerializer(serializers.ModelSerializer):
-    recipe = RecipeDetailSerializer(many=False)
-    type = TypeRecipeMenuSerializer(many=False, read_only=True)
+    price = fields.FloatField
     pagination_class = SmallResultsSetPagination
 
     class Meta:
         model = RecipeMenu
-        fields = ["recipe", "type", "price", "status"]
+        fields = ["id", "recipe", "type", "price", "status", "menu"]
 
 
 class ProductMenuDetailSerializer(serializers.ModelSerializer):
-    product = ProductDetailSerializer(many=False)
-    type = TypeProductMenuSerializer(many=False)
+    price = fields.FloatField
     pagination_class = SmallResultsSetPagination
 
     class Meta:
         model = ProductMenu
-        fields = ["product", "type", "price", "status"]
+        fields = ["id", "product", "type", "price", "status", "menu"]
 
 
 class MenuDetailSerializer(serializers.ModelSerializer):

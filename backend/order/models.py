@@ -1,40 +1,67 @@
 from django.db import models
 
 from backend.core.models import Client, ModelBase
+from backend.menu.models import RecipeMenu, ProductMenu
 from backend.order.constants import STATUS_ORDER, TYPE_ORDER
 from backend.product.models import Product
 
 
-class SalesOrder(ModelBase):
-    status_order = models.IntegerField(
-        choices=STATUS_ORDER, default=0, verbose_name="Status"
-    )
-    client = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True, null=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    comments = models.CharField(verbose_name="Observações", max_length=200, blank=True)
-    type = models.IntegerField(
-        choices=TYPE_ORDER, default=0, verbose_name="Tipo de Pedido"
-    )
+class StatusOrder(ModelBase):
+    name = models.CharField(max_length=200, verbose_name='Nome')
 
     def __str__(self):
-        return f"{self.id} - {self.get_type_display()} - {self.client.name}"
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Status dos Pedidos"
+        verbose_name = "Status do Pedido"
+
+
+class TypeOrder(ModelBase):
+    name = models.CharField(max_length=200, verbose_name='Nome')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Tipo de Pedido"
+        verbose_name = "Tipos de Pedidos"
+
+
+class SalesOrder(ModelBase):
+    status_order = models.ForeignKey(StatusOrder, on_delete=models.CASCADE, default=1)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True, null=True)
+    comments = models.CharField(verbose_name="Observações", max_length=200, blank=True)
+    type = models.ForeignKey(TypeOrder, on_delete=models.CASCADE)
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
+
+    def __str__(self):
+        return f"{self.id} - {self.type.__str__()} - {self.client.name}"
 
     class Meta:
         verbose_name_plural = "Pedidos de Venda"
         verbose_name = "Pedido de Venda"
 
 
-# class AdditionalOrder(ModelBase):
-#     product_menu = models.ForeignKey(
-#         ProductMenu, on_delete=models.CASCADE, limit_choices_to={"type": TYPE_PRODUCT_MENU.ADDITIONAL}, verbose_name="Adicional"
-#     )
-#     recipe_menu = models.ForeignKey(
-#         RecipeMenu, on_delete=models.CASCADE, limit_choices_to={"type": TYPE_REVENUE_MENU.LUNCH}, verbose_name="Lanches"
-#     )
-#
-#     def __str__(self):
-#         return self.product.__str__()
-#
-#     class Meta:
-#         verbose_name_plural = "Adicionais no Pedido"
-#         verbose_name = "Adicional no Pedido"
+class SalesOrderRecipe(ModelBase):
+    sales_order = models.ForeignKey(SalesOrder, on_delete=models.CASCADE, related_name="recipe_order")
+    recipe = models.ForeignKey(RecipeMenu, on_delete=models.CASCADE, verbose_name="Receitas")
+
+    def __str__(self):
+        return f"{self.sales_order.id} - {self.recipe.__str__()}"
+
+    class Meta:
+        verbose_name_plural = "ReceitasMenu Pedidos"
+        verbose_name = "ReceitaMenu Pedido"
+
+
+class SalesOrderProduct(ModelBase):
+    sales_order = models.ForeignKey(SalesOrder, on_delete=models.CASCADE, related_name="product_order")
+    product = models.ForeignKey(ProductMenu, on_delete=models.CASCADE, verbose_name="Produtos")
+
+    def __str__(self):
+        return f"{self.sales_order.id} - {self.product.__str__()}"
+
+    class Meta:
+        verbose_name_plural = "ProdutoMenus Pedidos"
+        verbose_name = "ProdutoMenu Pedido"
