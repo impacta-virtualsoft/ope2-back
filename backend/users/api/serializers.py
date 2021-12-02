@@ -7,10 +7,9 @@ from django.contrib.admin.models import (
     ContentType,
     LogEntry,
 )
-from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.forms.models import model_to_dict
-from rest_framework import exceptions, serializers, pagination
+from rest_framework import serializers
 
 from backend.users.models import User
 from backend.core.api.serializers import SmallResultsSetPagination
@@ -64,3 +63,13 @@ class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ["id", "first_name", "last_name", "email", "groups"]
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+    model = User
+
+    """
+    Serializer for password change endpoint.
+    """
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)

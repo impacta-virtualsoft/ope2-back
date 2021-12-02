@@ -8,7 +8,7 @@ from django.views import defaults as default_views
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework_swagger.views import get_swagger_view
 
-from backend.users.api.views import PermissionsUser
+from backend.users.api.views import PermissionsUser, ChangePasswordView
 
 schema_view = get_swagger_view(title="Virtualsoft API")
 
@@ -56,6 +56,7 @@ urlpatterns += [
 
 urlpatterns += [
     re_path(r"^api/user/permission", PermissionsUser.as_view(), name="permission"),
+    re_path(r"^api/change-password", ChangePasswordView.as_view(), name="change_password"),
 ]
 
 if settings.DEBUG:
