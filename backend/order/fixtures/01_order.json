@@ -1,0 +1,251 @@
+[
+{
+    "model": "order.statusorder",
+    "pk": 1,
+    "fields": {
+        "created_in": "2021-12-01T16:45:00.077Z",
+        "modified_in": "2021-12-01T16:45:00.077Z",
+        "name": "CONFIRMADO"
+    }
+},
+{
+    "model": "order.statusorder",
+    "pk": 2,
+    "fields": {
+        "created_in": "2021-12-01T16:45:04.783Z",
+        "modified_in": "2021-12-01T16:45:04.783Z",
+        "name": "EM PREPARAÇÃO"
+    }
+},
+{
+    "model": "order.statusorder",
+    "pk": 3,
+    "fields": {
+        "created_in": "2021-12-01T16:45:12.726Z",
+        "modified_in": "2021-12-01T16:45:12.726Z",
+        "name": "FINALIZADO"
+    }
+},
+{
+    "model": "order.statusorder",
+    "pk": 4,
+    "fields": {
+        "created_in": "2021-12-01T16:45:16.733Z",
+        "modified_in": "2021-12-01T16:45:16.733Z",
+        "name": "CANCELADO"
+    }
+},
+{
+    "model": "order.typeorder",
+    "pk": 1,
+    "fields": {
+        "created_in": "2021-12-01T16:44:26.495Z",
+        "modified_in": "2021-12-01T16:44:26.495Z",
+        "name": "LOJA"
+    }
+},
+{
+    "model": "order.typeorder",
+    "pk": 2,
+    "fields": {
+        "created_in": "2021-12-01T16:44:35.884Z",
+        "modified_in": "2021-12-01T16:44:35.884Z",
+        "name": "ENTREGA"
+    }
+},
+{
+    "model": "order.typeorder",
+    "pk": 3,
+    "fields": {
+        "created_in": "2021-12-01T16:44:41.230Z",
+        "modified_in": "2021-12-01T16:44:41.230Z",
+        "name": "RETIRADA"
+    }
+},
+{
+    "model": "order.salesorder",
+    "pk": 1,
+    "fields": {
+        "created_in": "2021-12-02T06:04:04.706Z",
+        "modified_in": "2021-12-02T06:04:05.946Z",
+        "status_order": 1,
+        "client": null,
+        "comments": "",
+        "type": 1,
+        "total": "99.96"
+    }
+},
+{
+    "model": "order.salesorder",
+    "pk": 2,
+    "fields": {
+        "created_in": "2021-12-02T06:04:35.425Z",
+        "modified_in": "2021-12-02T06:04:36.677Z",
+        "status_order": 1,
+        "client": null,
+        "comments": "",
+        "type": 1,
+        "total": "54.98"
+    }
+},
+{
+    "model": "order.salesorderrecipe",
+    "pk": 1,
+    "fields": {
+        "created_in": "2021-12-02T06:04:04.811Z",
+        "modified_in": "2021-12-02T06:04:04.812Z",
+        "sales_order": 1,
+        "recipe": 1
+    }
+},
+{
+    "model": "order.salesorderrecipe",
+    "pk": 2,
+    "fields": {
+        "created_in": "2021-12-02T06:04:04.893Z",
+        "modified_in": "2021-12-02T06:04:04.894Z",
+        "sales_order": 1,
+        "recipe": 1
+    }
+},
+{
+    "model": "order.salesorderrecipe",
+    "pk": 3,
+    "fields": {
+        "created_in": "2021-12-02T06:04:05.004Z",
+        "modified_in": "2021-12-02T06:04:05.004Z",
+        "sales_order": 1,
+        "recipe": 2
+    }
+},
+{
+    "model": "order.salesorderrecipe",
+    "pk": 4,
+    "fields": {
+        "created_in": "2021-12-02T06:04:05.147Z",
+        "modified_in": "2021-12-02T06:04:05.147Z",
+        "sales_order": 1,
+        "recipe": 2
+    }
+},
+{
+    "model": "order.salesorderrecipe",
+    "pk": 5,
+    "fields": {
+        "created_in": "2021-12-02T06:04:35.505Z",
+        "modified_in": "2021-12-02T06:04:35.505Z",
+        "sales_order": 2,
+        "recipe": 2
+    }
+},
+{
+    "model": "order.salesorderrecipe",
+    "pk": 6,
+    "fields": {
+        "created_in": "2021-12-02T06:04:35.583Z",
+        "modified_in": "2021-12-02T06:04:35.583Z",
+        "sales_order": 2,
+        "recipe": 2
+    }
+},
+{
+    "model": "order.salesorderrecipe",
+    "pk": 7,
+    "fields": {
+        "created_in": "2021-12-02T06:04:35.792Z",
+        "modified_in": "2021-12-02T06:04:35.792Z",
+        "sales_order": 2,
+        "recipe": 3
+    }
+},
+{
+    "model": "order.salesorderrecipe",
+    "pk": 8,
+    "fields": {
+        "created_in": "2021-12-02T06:04:36.050Z",
+        "modified_in": "2021-12-02T06:04:36.050Z",
+        "sales_order": 2,
+        "recipe": 3
+    }
+},
+{
+    "model": "order.salesorderproduct",
+    "pk": 1,
+    "fields": {
+        "created_in": "2021-12-02T06:04:05.402Z",
+        "modified_in": "2021-12-02T06:04:05.402Z",
+        "sales_order": 1,
+        "product": 1
+    }
+},
+{
+    "model": "order.salesorderproduct",
+    "pk": 2,
+    "fields": {
+        "created_in": "2021-12-02T06:04:05.600Z",
+        "modified_in": "2021-12-02T06:04:05.600Z",
+        "sales_order": 1,
+        "product": 1
+    }
+},
+{
+    "model": "order.salesorderproduct",
+    "pk": 3,
+    "fields": {
+        "created_in": "2021-12-02T06:04:05.734Z",
+        "modified_in": "2021-12-02T06:04:05.734Z",
+        "sales_order": 1,
+        "product": 2
+    }
+},
+{
+    "model": "order.salesorderproduct",
+    "pk": 4,
+    "fields": {
+        "created_in": "2021-12-02T06:04:05.820Z",
+        "modified_in": "2021-12-02T06:04:05.820Z",
+        "sales_order": 1,
+        "product": 2
+    }
+},
+{
+    "model": "order.salesorderproduct",
+    "pk": 5,
+    "fields": {
+        "created_in": "2021-12-02T06:04:36.243Z",
+        "modified_in": "2021-12-02T06:04:36.243Z",
+        "sales_order": 2,
+        "product": 2
+    }
+},
+{
+    "model": "order.salesorderproduct",
+    "pk": 6,
+    "fields": {
+        "created_in": "2021-12-02T06:04:36.385Z",
+        "modified_in": "2021-12-02T06:04:36.385Z",
+        "sales_order": 2,
+        "product": 2
+    }
+},
+{
+    "model": "order.salesorderproduct",
+    "pk": 7,
+    "fields": {
+        "created_in": "2021-12-02T06:04:36.468Z",
+        "modified_in": "2021-12-02T06:04:36.468Z",
+        "sales_order": 2,
+        "product": 3
+    }
+},
+{
+    "model": "order.salesorderproduct",
+    "pk": 8,
+    "fields": {
+        "created_in": "2021-12-02T06:04:36.548Z",
+        "modified_in": "2021-12-02T06:04:36.548Z",
+        "sales_order": 2,
+        "product": 3
+    }
+}
+]
