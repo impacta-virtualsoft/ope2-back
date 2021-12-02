@@ -36,7 +36,7 @@ class SalesOrder(ModelBase):
     total = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
 
     def __str__(self):
-        return f"{self.id} - {self.type.__str__()} - {self.client.name}"
+        return f"{self.id} - {self.type.__str__()} - {self.status_order.__str__()}"
 
     class Meta:
         verbose_name_plural = "Pedidos de Venda"
