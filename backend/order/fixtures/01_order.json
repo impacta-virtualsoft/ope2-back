@@ -71,7 +71,7 @@
         "status_order": 1,
         "client": null,
         "comments": "",
-        "type": 1,
+        "type_order": 1,
         "total": "99.96"
     }
 },
@@ -84,7 +84,7 @@
         "status_order": 1,
         "client": null,
         "comments": "",
-        "type": 1,
+        "type_order": 1,
         "total": "54.98"
     }
 },
@@ -95,7 +95,7 @@
         "created_in": "2021-12-02T06:04:04.811Z",
         "modified_in": "2021-12-02T06:04:04.812Z",
         "sales_order": 1,
-        "recipe": 1
+        "recipe_menu": 1
     }
 },
 {
@@ -105,7 +105,7 @@
         "created_in": "2021-12-02T06:04:04.893Z",
         "modified_in": "2021-12-02T06:04:04.894Z",
         "sales_order": 1,
-        "recipe": 1
+        "recipe_menu": 1
     }
 },
 {
@@ -115,7 +115,7 @@
         "created_in": "2021-12-02T06:04:05.004Z",
         "modified_in": "2021-12-02T06:04:05.004Z",
         "sales_order": 1,
-        "recipe": 2
+        "recipe_menu": 2
     }
 },
 {
@@ -125,7 +125,7 @@
         "created_in": "2021-12-02T06:04:05.147Z",
         "modified_in": "2021-12-02T06:04:05.147Z",
         "sales_order": 1,
-        "recipe": 2
+        "recipe_menu": 2
     }
 },
 {
@@ -135,7 +135,7 @@
         "created_in": "2021-12-02T06:04:35.505Z",
         "modified_in": "2021-12-02T06:04:35.505Z",
         "sales_order": 2,
-        "recipe": 2
+        "recipe_menu": 2
     }
 },
 {
@@ -145,7 +145,7 @@
         "created_in": "2021-12-02T06:04:35.583Z",
         "modified_in": "2021-12-02T06:04:35.583Z",
         "sales_order": 2,
-        "recipe": 2
+        "recipe_menu": 2
     }
 },
 {
@@ -155,7 +155,7 @@
         "created_in": "2021-12-02T06:04:35.792Z",
         "modified_in": "2021-12-02T06:04:35.792Z",
         "sales_order": 2,
-        "recipe": 3
+        "recipe_menu": 3
     }
 },
 {
@@ -165,7 +165,7 @@
         "created_in": "2021-12-02T06:04:36.050Z",
         "modified_in": "2021-12-02T06:04:36.050Z",
         "sales_order": 2,
-        "recipe": 3
+        "recipe_menu": 3
     }
 },
 {
@@ -175,7 +175,7 @@
         "created_in": "2021-12-02T06:04:05.402Z",
         "modified_in": "2021-12-02T06:04:05.402Z",
         "sales_order": 1,
-        "product": 1
+        "product_menu": 1
     }
 },
 {
@@ -185,7 +185,7 @@
         "created_in": "2021-12-02T06:04:05.600Z",
         "modified_in": "2021-12-02T06:04:05.600Z",
         "sales_order": 1,
-        "product": 1
+        "product_menu": 1
     }
 },
 {
@@ -195,7 +195,7 @@
         "created_in": "2021-12-02T06:04:05.734Z",
         "modified_in": "2021-12-02T06:04:05.734Z",
         "sales_order": 1,
-        "product": 2
+        "product_menu": 2
     }
 },
 {
@@ -205,7 +205,7 @@
         "created_in": "2021-12-02T06:04:05.820Z",
         "modified_in": "2021-12-02T06:04:05.820Z",
         "sales_order": 1,
-        "product": 2
+        "product_menu": 2
     }
 },
 {
@@ -215,7 +215,7 @@
         "created_in": "2021-12-02T06:04:36.243Z",
         "modified_in": "2021-12-02T06:04:36.243Z",
         "sales_order": 2,
-        "product": 2
+        "product_menu": 2
     }
 },
 {
@@ -225,7 +225,7 @@
         "created_in": "2021-12-02T06:04:36.385Z",
         "modified_in": "2021-12-02T06:04:36.385Z",
         "sales_order": 2,
-        "product": 2
+        "product_menu": 2
     }
 },
 {
@@ -235,7 +235,7 @@
         "created_in": "2021-12-02T06:04:36.468Z",
         "modified_in": "2021-12-02T06:04:36.468Z",
         "sales_order": 2,
-        "product": 3
+        "product_menu": 3
     }
 },
 {
@@ -245,7 +245,7 @@
         "created_in": "2021-12-02T06:04:36.548Z",
         "modified_in": "2021-12-02T06:04:36.548Z",
         "sales_order": 2,
-        "product": 3
+        "product_menu": 3
     }
 }
 ]

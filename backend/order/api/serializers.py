@@ -29,7 +29,7 @@ class SalesOrderRecipeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SalesOrderRecipe
-        fields = ["recipe"]
+        fields = ["recipe_menu"]
 
 
 class SalesOrderProductSerializer(serializers.ModelSerializer):
@@ -37,13 +37,15 @@ class SalesOrderProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SalesOrderProduct
-        fields = ["product"]
+        fields = ["product_menu"]
 
 
 class SalesOrderSerializer(serializers.ModelSerializer):
     pagination_class = SmallResultsSetPagination
     status_order = StatusOrderSerializer(read_only=True)
     total = fields.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+    created_in = fields.DateTimeField(read_only=True)
+    modified_in = fields.DateTimeField(read_only=True)
 
     recipe_order = SalesOrderRecipeSerializer(many=True, required=False)
     product_order = SalesOrderProductSerializer(many=True, required=False)
@@ -52,8 +54,9 @@ class SalesOrderSerializer(serializers.ModelSerializer):
         model = SalesOrder
         fields = [
             "id", "status_order", "total",
+            "client", "comments", "type_order",
+            "created_in", "modified_in",
             "recipe_order", "product_order",
-            "client", "comments", "type"
         ]
     def create(self, validated_data):
         try:
@@ -70,12 +73,12 @@ class SalesOrderSerializer(serializers.ModelSerializer):
         if recipes_order:
             for recipe_order in recipes_order:
                 try:
-                    recipe = RecipeMenu.objects.filter(id=recipe_order["recipe"].id)[0]
+                    recipe = RecipeMenu.objects.filter(id=recipe_order["recipe_menu"].id)[0]
                 except IndexError:
                     print(123)
 
                 recipe_order_dict = {
-                    "recipe": recipe,
+                    "recipe_menu": recipe,
                     "sales_order": order,
                 }
 
@@ -84,25 +87,25 @@ class SalesOrderSerializer(serializers.ModelSerializer):
         if products_order:
             for product_order in products_order:
                 try:
-                    product = ProductMenu.objects.filter(id=product_order["product"].id)[0]
+                    product = ProductMenu.objects.filter(id=product_order["product_menu"].id)[0]
                 except IndexError:
                     print(123)
 
                 product_order_dict = {
-                    "product": product,
+                    "product_menu": product,
                     "sales_order": order,
                 }
 
                 SalesOrderProduct.objects.create(**product_order_dict)
             validated_data["product_order"] = products_order
         if recipes_order and products_order:
-            order.total = SalesOrderRecipe.objects.filter(sales_order=order).aggregate(Sum('recipe__price'))['recipe__price__sum'] + SalesOrderProduct.objects.filter(sales_order=order).aggregate(Sum('product__price'))['product__price__sum']
+            order.total = SalesOrderRecipe.objects.filter(sales_order=order).aggregate(Sum('recipe_menu__price'))['recipe_menu__price__sum'] + SalesOrderProduct.objects.filter(sales_order=order).aggregate(Sum('product_menu__price'))['product_menu__price__sum']
             order.save()
         elif recipes_order:
-            order.total = SalesOrderRecipe.objects.filter(sales_order=order).aggregate(Sum('recipe__price'))['recipe__price__sum']
+            order.total = SalesOrderRecipe.objects.filter(sales_order=order).aggregate(Sum('recipe_menu__price'))['recipe_menu__price__sum']
             order.save()
         elif products_order:
-            order.total = SalesOrderProduct.objects.filter(sales_order=order).aggregate(Sum('product__price'))['product__price__sum']
+            order.total = SalesOrderProduct.objects.filter(sales_order=order).aggregate(Sum('product_menu__price'))['product_menu__price__sum']
             order.save()
         validated_data["total"] = order.total
         validated_data["status_order"] = order.status_order

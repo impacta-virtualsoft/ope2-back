@@ -32,11 +32,11 @@ class SalesOrder(ModelBase):
     status_order = models.ForeignKey(StatusOrder, on_delete=models.CASCADE, default=1)
     client = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True, null=True)
     comments = models.CharField(verbose_name="Observações", max_length=200, blank=True)
-    type = models.ForeignKey(TypeOrder, on_delete=models.CASCADE)
+    type_order = models.ForeignKey(TypeOrder, on_delete=models.CASCADE)
     total = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
 
     def __str__(self):
-        return f"{self.id} - {self.type.__str__()} - {self.status_order.__str__()}"
+        return f"{self.id} - {self.type_order.__str__()} - {self.status_order.__str__()}"
 
     class Meta:
         verbose_name_plural = "Pedidos de Venda"
@@ -45,10 +45,10 @@ class SalesOrder(ModelBase):
 
 class SalesOrderRecipe(ModelBase):
     sales_order = models.ForeignKey(SalesOrder, on_delete=models.CASCADE, related_name="recipe_order")
-    recipe = models.ForeignKey(RecipeMenu, on_delete=models.CASCADE, verbose_name="Receitas")
+    recipe_menu = models.ForeignKey(RecipeMenu, on_delete=models.CASCADE, verbose_name="Receitas")
 
     def __str__(self):
-        return f"{self.sales_order.id} - {self.recipe.__str__()}"
+        return f"{self.sales_order.id} - {self.recipe_menu.__str__()}"
 
     class Meta:
         verbose_name_plural = "ReceitasMenu Pedidos"
@@ -57,10 +57,10 @@ class SalesOrderRecipe(ModelBase):
 
 class SalesOrderProduct(ModelBase):
     sales_order = models.ForeignKey(SalesOrder, on_delete=models.CASCADE, related_name="product_order")
-    product = models.ForeignKey(ProductMenu, on_delete=models.CASCADE, verbose_name="Produtos")
+    product_menu = models.ForeignKey(ProductMenu, on_delete=models.CASCADE, verbose_name="Produtos")
 
     def __str__(self):
-        return f"{self.sales_order.id} - {self.product.__str__()}"
+        return f"{self.sales_order.id} - {self.product_menu.__str__()}"
 
     class Meta:
         verbose_name_plural = "ProdutoMenus Pedidos"
