@@ -95,9 +95,15 @@ class SalesOrderSerializer(serializers.ModelSerializer):
 
                 SalesOrderProduct.objects.create(**product_order_dict)
             validated_data["product_order"] = products_order
-        order.total = SalesOrderRecipe.objects.filter(sales_order=order).aggregate(Sum('recipe__price'))['recipe__price__sum'] + SalesOrderProduct.objects.filter(sales_order=order).aggregate(Sum('product__price'))['product__price__sum']
-        order.save()
-
+        if recipes_order and products_order:
+            order.total = SalesOrderRecipe.objects.filter(sales_order=order).aggregate(Sum('recipe__price'))['recipe__price__sum'] + SalesOrderProduct.objects.filter(sales_order=order).aggregate(Sum('product__price'))['product__price__sum']
+            order.save()
+        elif recipes_order:
+            order.total = SalesOrderRecipe.objects.filter(sales_order=order).aggregate(Sum('recipe__price'))['recipe__price__sum']
+            order.save()
+        elif products_order:
+            order.total = SalesOrderProduct.objects.filter(sales_order=order).aggregate(Sum('product__price'))['product__price__sum']
+            order.save()
         validated_data["total"] = order.total
         validated_data["status_order"] = order.status_order
         validated_data["id"] = order.id
@@ -115,10 +121,6 @@ class SalesOrderInPreparationSerializer(serializers.ModelSerializer):
         ]
 
     def update(self, instance, validated_data):
-        if instance.status_order.id == 2:
-            return instance
-        elif instance.status_order.id < 2:
-            return instance
         status_order = StatusOrder.objects.get(id=2)
         instance.status_order = status_order
         instance.save()
@@ -135,12 +137,6 @@ class SalesOrderFinishedSerializer(serializers.ModelSerializer):
         ]
 
     def update(self, instance, validated_data):
-        if instance.status_order.id == 3:
-            return instance
-        elif instance.status_order.id > 3:
-            return instance
-        elif instance.status_order.id == 1:
-            return instance
         status_order = StatusOrder.objects.get(id=3)
         instance.status_order = status_order
         instance.save()
@@ -157,8 +153,6 @@ class SalesOrderCanceledSerializer(serializers.ModelSerializer):
         ]
 
     def update(self, instance, validated_data):
-        if instance.status_order.id == 3:
-            return instance
         status_order = StatusOrder.objects.get(id=4)
         instance.status_order = status_order
         return instance
