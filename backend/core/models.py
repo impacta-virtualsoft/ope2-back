@@ -10,11 +10,28 @@ class ModelBase(models.Model):
         abstract = True
 
 
+class Address(ModelBase):
+    cep = models.CharField(max_length=8, blank=True, null=True,verbose_name='CEP')
+    logradouro = models.CharField(max_length=200, blank=True,null=True, verbose_name='Logradouro')
+    complemento = models.CharField(max_length=100, blank=True, null=True, verbose_name='Complemento')
+    bairro = models.CharField(max_length=200, blank=True, null=True, verbose_name='Bairro')
+    localidade = models.CharField(max_length=200, blank=True, null=True, verbose_name='Localidade')
+    uf = models.CharField(max_length=2, blank=True, null=True, verbose_name='UF')
+
+    class Meta:
+        verbose_name_plural = "Endereços"
+        verbose_name = "Endereço"
+
+    def __str__(self):
+        return self.logradouro
+
+
 class Client(ModelBase):
     cpf = models.CharField(
-        verbose_name="CPF", unique=True, max_length=11, blank=True, null=True
+        verbose_name="CPF", max_length=11, blank=True, null=True
     )
     name = models.CharField(verbose_name="Nome", max_length=200, blank=True)
+    address = models.ForeignKey(Address, blank=True, null=True, on_delete=models.CASCADE, verbose_name="Endereço", related_name="address")
 
     class Meta:
         verbose_name_plural = "Clientes"
