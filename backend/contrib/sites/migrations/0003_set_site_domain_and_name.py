@@ -13,7 +13,7 @@ def update_site_forward(apps, schema_editor):
     Site.objects.update_or_create(
         id=settings.SITE_ID,
         defaults={
-            "domain": "virtualsoft.dev.br",
+            "domain": "bsides.dev",
             "name": "OPE2 Divina Hamburgueria",
         },
     )
@@ -23,7 +23,7 @@ def update_site_backward(apps, schema_editor):
     """Revert site domain and name to default."""
     Site = apps.get_model("sites", "Site")
     Site.objects.update_or_create(
-        id=settings.SITE_ID, defaults={"domain": "virtualsoft.dev.br", "name": "Virtualsoft"}
+        id=settings.SITE_ID, defaults={"domain": "bsides.dev", "name": "Virtualsoft"}
     )
 
 

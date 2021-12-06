@@ -5,7 +5,7 @@ USE_DOCKER=yes
 IPYTHONDIR=/app/.ipython
 DJANGO_SETTINGS_MODULE=config.settings.production
 DJANGO_SECRET_KEY=aknAsRKGsY3knV7otGDud6rvbkyMxpqj1E5dVao82kDUqu3QH0827adGqtMhZgOi
-DJANGO_ALLOWED_HOSTS=virtualsoft.dev.br
+DJANGO_ALLOWED_HOSTS=bsides.dev
 DJANGO_DEFAULT_FROM_EMAIL=robscarvalho8@gmail.com
 DJANGO_ADMIN_URL=admin
 

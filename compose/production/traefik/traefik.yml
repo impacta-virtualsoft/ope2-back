@@ -28,7 +28,7 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-      rule: "Host(`virtualsoft.dev.br`)"
+      rule: "Host(`bsides.dev`)"
       entryPoints:
         - web-secure
       middlewares:
